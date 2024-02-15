@@ -10,8 +10,10 @@ export const Sidebar = () => {
         <div className="flex flex-row gap-x-2 py-5">
           <img src={react} className="w-12 h-12" />
           <div>
-            <p>React Jira Clone</p>
-            <span className="text-xs">Software Project</span>
+            <p className="font-medium text-textDark text-15">
+              React Jira Clone
+            </p>
+            <span className="text-textMedium text-13">Software Project</span>
           </div>
         </div>
 

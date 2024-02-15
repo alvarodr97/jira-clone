@@ -14,6 +14,7 @@ export const SidebarLink = ({ icon: Icon, path, pathName }: LinkProps) => {
     <NavLink
       key={path}
       to={path}
+      title={pathName}
       className={({ isActive }) => {
         return `flex flex-row p-2 gap-x-2 hover:bg-activeLink ${
           isActive && "bg-activeLink text-activeLinkText"

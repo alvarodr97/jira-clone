@@ -23,6 +23,12 @@ module.exports = {
         sidebarHr: '#c1c7d0',
         activeLink: '#ebecf0',
         activeLinkText: '#0052cc',
+        textMedium: '#5E6C84',
+        textDark: '#42526E',
+      },
+      fontSize: {
+        13: '0.8125rem',
+        15: '0.9375rem',
       },
       keyframes: {
         "accordion-down": {
