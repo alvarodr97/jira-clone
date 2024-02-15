@@ -1,15 +1,11 @@
-import { LeftNavbar } from "./LeftNavbar"
-import { Resizer } from "./Resizer"
-import { Sidebar } from "./Sidebar"
+import { LeftSidebar } from "./left-sidebar/LeftSidebar";
+import { Sidebar } from "./sidebar/Sidebar";
 
 export const Navigation = () => {
   return (
-    <div className="flex">
-        <div className="flex flex-row overflow-hidden h-full">
-            <LeftNavbar />
-            <Sidebar />
-        </div>
-        <Resizer />
-    </div>
+    <aside className="flex flex-row border-r border-r-sidebarHr">
+        <LeftSidebar />
+        <Sidebar />
+    </aside>
   )
-}
+};
