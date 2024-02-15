@@ -1,5 +1,5 @@
 import react from "@/assets/react.png";
-import { LINKS } from "@/constants/link";
+import { LINKS } from "@/constants/links";
 import { SidebarLink } from "./components/SidebarLink";
 
 export const Sidebar = () => {
