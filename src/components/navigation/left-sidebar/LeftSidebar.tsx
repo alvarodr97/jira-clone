@@ -1,6 +1,7 @@
-import { FileQuestion, User } from "lucide-react";
 import { SearchIssue } from "./components/SearchIssue";
 import { AddIssue } from "./components/AddIssue";
+import { UserIcon } from "./components/UserIcon";
+import { AboutIcon } from "./components/AboutIcon";
 
 export const LeftSidebar = () => {
   return (
@@ -12,9 +13,9 @@ export const LeftSidebar = () => {
       </div>
 
       {/* Bottom Icons */}
-      <div>
-        <User color="#fff" />
-        <FileQuestion color="#fff" />
+      <div className="p-4 flex flex-col gap-y-2">
+        <UserIcon />
+        <AboutIcon />
       </div>
     </div>
   );
