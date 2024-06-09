@@ -1,10 +1,12 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { BoardFilter } from "./components/BoardFilter";
+import useBoundStore from "@/store/store";
 // import { BoardDnd } from "./components/BoardDnd";
 
-const breadcrumbs: string[] = ["Projects", "React Jira Clone", "Kanban Board"];
-
 export const Board = () => {
+  const projectName = useBoundStore((state) => state.projectName);
+  const breadcrumbs: string[] = ["Projects", projectName, "Kanban Board"];
+
   return (
     <div className="flex flex-col w-full h-full py-8 pl-8 pr-6">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
