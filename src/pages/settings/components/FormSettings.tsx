@@ -1,3 +1,4 @@
+import useBoundStore from "@/store/store";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,7 +9,7 @@ import { FormSelectSettings } from "./FormSelectSettings";
 import { FormDescriptionSettings } from "./FormDescriptionSettings";
 import { toast } from "sonner";
 
-const SignUpSchema = z.object({
+const FormSettingsSchema = z.object({
   projectName: z
     .string()
     .min(3, { message: "Project Name must contain at least 3 character(s)" })
@@ -21,22 +22,22 @@ const SignUpSchema = z.object({
   description: z.string().optional(),
 });
 
-export type SettingsSchemaType = z.infer<typeof SignUpSchema>;
+export type SettingsSchemaType = z.infer<typeof FormSettingsSchema>;
 
-// TODO: Add zustand default values and actions
 export const FormSettings = () => {
+  const { projectName, category, url, description, changeData } = useBoundStore();
   const form = useForm<SettingsSchemaType>({
-    resolver: zodResolver(SignUpSchema),
+    resolver: zodResolver(FormSettingsSchema),
     defaultValues: {
-      projectName: "React",
-      url: "https://...",
-      category: "Marketing",
-      description: "A Jira clone app built with React 18, Zustand and shadcn.",
+      projectName,
+      url,
+      category,
+      description,
     },
   });
 
-  function onSubmit(values: z.infer<typeof SignUpSchema>) {
-    console.log(values);
+  function onSubmit(values: z.infer<typeof FormSettingsSchema>) {
+    changeData(values);
     toast.success("Changes have been saved successfully.");
   }
 
@@ -54,11 +55,7 @@ export const FormSettings = () => {
         />
 
         {/* URL Input */}
-        <FormInputSettings
-          control={form.control}
-          name="url"
-          label="URL"
-        />
+        <FormInputSettings control={form.control} name="url" label="URL" />
 
         {/* Category select */}
         <FormSelectSettings control={form.control} />
