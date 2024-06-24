@@ -24,7 +24,7 @@ export const Sidebar = () => {
 
         {LINKS.map(
           (link) =>
-            link.path === "" && <SidebarLink key={link.path} {...link} />
+            link.path === "" && <SidebarLink key={link.pathName} {...link} />
         )}
       </div>
     </div>
