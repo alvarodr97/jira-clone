@@ -13,12 +13,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { User } from "@/types/project";
 
 interface Props<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   label: string;
-  options: string[];
+  options: string[] | User[];
 }
 
 export function FormSelect<T extends FieldValues>({
@@ -41,11 +42,17 @@ export function FormSelect<T extends FieldValues>({
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {options.map((option) => (
-                <SelectItem key={option} value={option}>
-                  {option}
-                </SelectItem>
-              ))}
+              {options.map((option) =>
+                typeof option === "string" ? (
+                  <SelectItem key={option} value={option}>
+                    {option}
+                  </SelectItem>
+                ) : (
+                  <SelectItem key={option.id} value={option.id}>
+                    {option.name}
+                  </SelectItem>
+                )
+              )}
             </SelectContent>
           </Select>
           <FormMessage />

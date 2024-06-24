@@ -1,3 +1,4 @@
+import useBoundStore from "@/store/store";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -25,6 +26,8 @@ const AddIssueSchema = z.object({
 export type AddIssueSchemaType = z.infer<typeof AddIssueSchema>;
 
 export const FormAddIssue = () => {
+  const users = useBoundStore((state) => state.users);
+
   const form = useForm<AddIssueSchemaType>({
     resolver: zodResolver(AddIssueSchema),
     defaultValues: {
@@ -32,7 +35,7 @@ export const FormAddIssue = () => {
       priority: "Medium",
       summary: "",
       description: "",
-      reporter: "XXXXX",
+      reporter: users[1].id,
       assignees: "",
     },
   });
@@ -80,7 +83,15 @@ export const FormAddIssue = () => {
           placeholder="Add new functionality where..."
         />
 
-        {/* TODO: Reporters and assignees */}
+        {/* Reporters */}
+        <FormSelect
+          control={form.control}
+          name="reporter"
+          label="Reporter"
+          options={users}
+        />
+
+        {/* TODO: Asignees */}
 
         <div className="flex flex-row gap-x-2 justify-end">
           <Button type="submit" variant="default">
