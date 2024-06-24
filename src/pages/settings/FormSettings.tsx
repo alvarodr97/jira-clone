@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { FormSelect } from "@/components/form/FormSelect";
 import { FormDescription } from "@/components/form/FormDescription";
 import { FormInput } from "@/components/form/FormInput";
+import { CATEGORY } from "@/constants/settings";
 
 const FormSettingsSchema = z.object({
   projectName: z
@@ -59,7 +60,7 @@ export const FormSettings = () => {
         <FormInput control={form.control} name="url" label="URL" placeholder="https://" />
 
         {/* Category select */}
-        <FormSelect control={form.control} name="category" label="Category" />
+        <FormSelect control={form.control} name="category" label="Category" options={CATEGORY} />
 
         {/* Description area */}
         <FormDescription control={form.control} name="description" label="Description" placeholder="Add a description" />
