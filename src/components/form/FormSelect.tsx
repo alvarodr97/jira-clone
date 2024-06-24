@@ -48,8 +48,15 @@ export function FormSelect<T extends FieldValues>({
                     {option}
                   </SelectItem>
                 ) : (
-                  <SelectItem key={option.id} value={option.id}>
-                    {option.name}
+                  <SelectItem key={option.id} value={option.id} className="p-2">
+                    <div className="flex flex-row gap-x-2">
+                      <img
+                        src={option.avatarUrl}
+                        alt={option.name}
+                        className="rounded-full w-[20px] h-[20px]"
+                      />
+                      {option.name}
+                    </div>
                   </SelectItem>
                 )
               )}
