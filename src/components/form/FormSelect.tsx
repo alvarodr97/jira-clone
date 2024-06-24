@@ -18,12 +18,14 @@ interface Props<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   label: string;
+  options: string[];
 }
 
 export function FormSelect<T extends FieldValues>({
   control,
   name,
-  label
+  label,
+  options,
 }: Props<T>) {
   return (
     <FormField
@@ -39,10 +41,11 @@ export function FormSelect<T extends FieldValues>({
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {/* TODO: Change this to map */}
-              <SelectItem value="Business">Business</SelectItem>
-              <SelectItem value="Marketing">Marketing</SelectItem>
-              <SelectItem value="Software">Software</SelectItem>
+              {options.map((option) => (
+                <SelectItem key={option} value={option}>
+                  {option}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
           <FormMessage />
