@@ -18,13 +18,13 @@ export interface Issue {
   reporterId: string;
   status: string;
   title: string;
-  type: Type;
+  type: IssueType;
   updatedAt: string;
   userIds: string[];
   listPosition: number;
 }
 
-export enum Type {
+export enum IssueType {
   Bug = "Bug",
   Story = "Story",
   Task = "Task",
