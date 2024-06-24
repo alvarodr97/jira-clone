@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { FormInputSettings } from "./FormInputSettings";
-import { FormSelectSettings } from "./FormSelectSettings";
-import { FormDescriptionSettings } from "./FormDescriptionSettings";
 import { toast } from "sonner";
+import { FormSelect } from "@/components/form/FormSelect";
+import { FormDescription } from "@/components/form/FormDescription";
+import { FormInput } from "@/components/form/FormInput";
 
 const FormSettingsSchema = z.object({
   projectName: z
@@ -48,20 +48,21 @@ export const FormSettings = () => {
         className="max-w-[640px] space-y-4"
       >
         {/* Project Name input */}
-        <FormInputSettings
+        <FormInput
           control={form.control}
           name="projectName"
           label="Project Name"
+          placeholder="Jira Clone"
         />
 
         {/* URL Input */}
-        <FormInputSettings control={form.control} name="url" label="URL" />
+        <FormInput control={form.control} name="url" label="URL" placeholder="https://" />
 
         {/* Category select */}
-        <FormSelectSettings control={form.control} />
+        <FormSelect control={form.control} name="category" label="Category" />
 
         {/* Description area */}
-        <FormDescriptionSettings control={form.control} />
+        <FormDescription control={form.control} name="description" label="Description" placeholder="Add a description" />
 
         <Button type="submit">Save</Button>
       </form>

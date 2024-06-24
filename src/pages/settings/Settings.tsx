@@ -1,5 +1,5 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { FormSettings } from "./components/FormSettings";
+import { FormSettings } from "./FormSettings";
 import useBoundStore from "@/store/store";
 
 export const Settings = () => {

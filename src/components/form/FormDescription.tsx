@@ -1,3 +1,4 @@
+import { Control, FieldValues, Path } from "react-hook-form";
 import {
   FormControl,
   FormField,
@@ -5,24 +6,30 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { Control } from "react-hook-form";
-import { SettingsSchemaType } from "./FormSettings";
 
-interface Props {
-  control: Control<SettingsSchemaType>;
+interface Props<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  placeholder: string;
+  label: string;
 }
 
-export const FormDescriptionSettings = ({ control }: Props) => {
+export function FormDescription<T extends FieldValues>({
+  control,
+  name,
+  placeholder,
+  label
+}: Props<T>) {
   return (
     <FormField
       control={control}
-      name="description"
+      name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Description</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <FormControl>
             <Textarea
-              placeholder="Add a description"
+              placeholder={placeholder}
               className="resize-none"
               {...field}
             />
@@ -31,4 +38,4 @@ export const FormDescriptionSettings = ({ control }: Props) => {
       )}
     />
   );
-};
+}

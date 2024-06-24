@@ -1,3 +1,4 @@
+import { Control, FieldValues, Path } from "react-hook-form";
 import {
   FormControl,
   FormField,
@@ -12,28 +13,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Control } from "react-hook-form";
-import { SettingsSchemaType } from "./FormSettings";
 
-interface Props {
-  control: Control<SettingsSchemaType>;
+interface Props<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
+  label: string;
 }
 
-export function FormSelectSettings({ control }: Props) {
+export function FormSelect<T extends FieldValues>({
+  control,
+  name,
+  label
+}: Props<T>) {
   return (
     <FormField
       control={control}
-      name="category"
+      name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Category</FormLabel>
+          <FormLabel>{label}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger>
-                <SelectValue placeholder="Select a category" />
+                <SelectValue />
               </SelectTrigger>
             </FormControl>
             <SelectContent>
+              {/* TODO: Change this to map */}
               <SelectItem value="Business">Business</SelectItem>
               <SelectItem value="Marketing">Marketing</SelectItem>
               <SelectItem value="Software">Software</SelectItem>
