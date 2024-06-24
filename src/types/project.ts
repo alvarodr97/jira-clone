@@ -24,11 +24,7 @@ export interface Issue {
   listPosition: number;
 }
 
-export enum IssueType {
-  Bug = "Bug",
-  Story = "Story",
-  Task = "Task",
-}
+export type IssueType = "Bug" | "Story" | "Task";
 
 export interface User {
   id: string;

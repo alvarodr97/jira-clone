@@ -1,6 +1,7 @@
 import { ProjectType } from "@/types/project";
 import { StateCreator } from "zustand";
 import project from "../assets/data/project.json";
+import { validateIssueType } from "@/utils/helpers";
 
 export interface ProjectSliceType extends ProjectType {
   changeData: (values: {
@@ -20,8 +21,10 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set) => ({
   createdAt: project.createdAt,
   updatedAt: project.updatedAt,
   users: project.users,
-  // issues: project.issues,
-  issues: [],
+  issues: project.issues.map((issue) => ({
+    ...issue,
+    type: validateIssueType(issue.type),
+  })),
 
   changeData: async (values: {
     url: string;
