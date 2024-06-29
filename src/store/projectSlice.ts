@@ -1,4 +1,4 @@
-import { ProjectType } from "@/types/project";
+import { Issue, ProjectType } from "@/types/project";
 import { StateCreator } from "zustand";
 import project from "../assets/data/project.json";
 import { validateIssueType } from "@/utils/helpers";
@@ -10,9 +10,10 @@ export interface ProjectSliceType extends ProjectType {
     projectName: string;
     description?: string | undefined;
   }) => void;
+  filterByTitle: (query: string) => Issue[];
 }
 
-const createProjectSlice: StateCreator<ProjectSliceType> = (set) => ({
+const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
   id: project.id,
   projectName: project.name,
   url: project.url,
@@ -33,6 +34,12 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set) => ({
     description?: string | undefined;
   }) => {
     set((state) => ({ ...state, ...values }));
+  },
+
+  filterByTitle: (query: string) => {
+    return get().issues.filter((item) =>
+      item.title.toLowerCase().includes(query.toLowerCase())
+    );
   },
 });
 

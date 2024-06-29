@@ -13,7 +13,7 @@ export type IconType =
   | "Help"
   | "Github"
   | "Link"
-  | "NoResult"
+  | "No-result"
   | "Page"
   | "Plus"
   | "Report"
