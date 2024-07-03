@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { FormSelect } from "../form/FormSelect";
 import { FormInput } from "../form/FormInput";
 import { FormDescription } from "../form/FormDescription";
-import { ISSUES } from "@/constants/issue-type";
-import { ISSUEPRIORITY } from "@/constants/issue-priority";
+import { ISSUES_TYPES } from "@/constants/issues-constants";
+import { ISSUES_PRIORITY } from "@/constants/issues-constants";
 
 const AddIssueSchema = z.object({
   type: z.string().min(1, { message: "Select one option" }),
@@ -56,7 +56,7 @@ export const FormAddIssue = () => {
           control={form.control}
           name="type"
           label="Issue type"
-          options={ISSUES}
+          options={ISSUES_TYPES}
         />
 
         {/* Issue Priority */}
@@ -64,7 +64,7 @@ export const FormAddIssue = () => {
           control={form.control}
           name="priority"
           label="Issue priority"
-          options={ISSUEPRIORITY}
+          options={ISSUES_PRIORITY}
         />
 
         {/* Issue Summary */}
