@@ -16,7 +16,7 @@ export interface Issue {
   id: string;
   priority: string;
   reporterId: string;
-  status: string;
+  status: IssueStatus;
   title: string;
   type: IssueType;
   updatedAt: string;
@@ -25,6 +25,7 @@ export interface Issue {
 }
 
 export type IssueType = "Bug" | "Story" | "Task";
+export type IssueStatus = "Selected for Development" | "Backlog" | "In progress" | "Done";
 
 export interface User {
   id: string;
