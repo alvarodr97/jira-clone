@@ -8,6 +8,7 @@ import './index.css'
 import App from './App';
 import { Board } from './pages/board/Board';
 import { Settings } from './pages/settings/Settings';
+// import { Issue } from './pages/issue/Issue';
 
 const router = createBrowserRouter([
   {
@@ -15,13 +16,17 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "board",
+        path: "project/board",
         element: <Board />
       },
       {
-        path: "settings",
+        path: "project/settings",
         element: <Settings />
       },
+      // {
+      //   path: "project/issue/:projectId",
+      //   element: <Issue />
+      // },
     ]
   },
 ]);

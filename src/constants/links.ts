@@ -12,12 +12,12 @@ import {
 export const LINKS: LinkProps[] = [
   {
     icon: Kanban,
-    path: "/board",
+    path: "/project/board",
     pathName: "Kanban Board",
   },
   {
     icon: Settings,
-    path: "/settings",
+    path: "/project/settings",
     pathName: "Project Settings",
   },
   {

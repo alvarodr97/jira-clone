@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 
-type path = "/board" | "/settings" | "/issue" | "";
+type path = "/project/board" | "/project/settings" | "/project/issue" | "";
 
 export interface LinkProps {
   icon: LucideIcon;
