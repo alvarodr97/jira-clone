@@ -60,7 +60,6 @@ export const IssueStatus = ({ issueStatus }: { issueStatus: string }) => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      {selectedStatus}
     </>
   );
 };
