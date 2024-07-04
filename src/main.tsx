@@ -1,14 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import './index.css'
-import App from './App';
-import { Board } from './pages/board/Board';
-import { Settings } from './pages/settings/Settings';
-// import { Issue } from './pages/issue/Issue';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import App from "./App";
+import { Board } from "./pages/board/Board";
+import { Settings } from "./pages/settings/Settings";
+import { Issue } from "./pages/issue/Issue";
 
 const router = createBrowserRouter([
   {
@@ -17,23 +14,22 @@ const router = createBrowserRouter([
     children: [
       {
         path: "project/board",
-        element: <Board />
+        element: <Board />,
       },
       {
         path: "project/settings",
-        element: <Settings />
+        element: <Settings />,
       },
-      // {
-      //   path: "project/issue/:projectId",
-      //   element: <Issue />
-      // },
-    ]
+      {
+        path: "project/issue/:projectId",
+        element: <Issue />,
+      },
+    ],
   },
 ]);
 
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

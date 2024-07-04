@@ -25,7 +25,13 @@ export interface Issue {
 }
 
 export type IssueType = "Bug" | "Story" | "Task";
-export type IssueStatus = "Selected for Development" | "Backlog" | "In progress" | "Done";
+
+export enum IssueStatus {
+  BACKLOG = "Backlog",
+  SELECTED = "Selected",
+  IN_PROGRESS = "InProgress",
+  DONE = "Done",
+}
 
 export interface User {
   id: string;

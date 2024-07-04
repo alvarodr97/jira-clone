@@ -25,6 +25,8 @@ module.exports = {
         activeLinkText: '#0052cc',
         textMedium: '#5E6C84',
         textDark: '#42526E',
+
+        borderLightest: '#dfe1e6',
       },
       fontSize: {
         13: '0.8125rem',

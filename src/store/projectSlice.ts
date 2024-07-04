@@ -1,16 +1,17 @@
 import { Issue, ProjectType } from "@/types/project";
 import { StateCreator } from "zustand";
 import project from "../assets/data/project.json";
-import { validateIssueType } from "@/utils/helpers";
+import { validateIssueStatus, validateIssueType } from "@/utils/helpers";
 
 export interface ProjectSliceType extends ProjectType {
-  changeData: (values: {
+  setProjectData: (values: {
     url: string;
     category: string;
     projectName: string;
     description?: string | undefined;
   }) => void;
   filterByTitle: (query: string) => Issue[];
+  filterById: (id: string) => Issue;
 }
 
 const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
@@ -24,10 +25,11 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
   users: project.users,
   issues: project.issues.map((issue) => ({
     ...issue,
+    status: validateIssueStatus(issue.status),
     type: validateIssueType(issue.type),
   })),
 
-  changeData: async (values: {
+  setProjectData: async (values: {
     url: string;
     category: string;
     projectName: string;
@@ -40,6 +42,14 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
     return get().issues.filter((item) =>
       item.title.toLowerCase().includes(query.toLowerCase())
     );
+  },
+
+  filterById: (id: string) => {
+    const issue = get().issues.find((item) => item.id === id);
+    if (!issue) {
+      throw new Error(`Issue with id ${id} not found`);
+    }
+    return issue;
   },
 });
 

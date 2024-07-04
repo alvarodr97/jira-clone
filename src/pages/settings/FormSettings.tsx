@@ -26,7 +26,7 @@ const FormSettingsSchema = z.object({
 export type SettingsSchemaType = z.infer<typeof FormSettingsSchema>;
 
 export const FormSettings = () => {
-  const { projectName, category, url, description, changeData } = useBoundStore();
+  const { projectName, category, url, description, setProjectData } = useBoundStore();
   const form = useForm<SettingsSchemaType>({
     resolver: zodResolver(FormSettingsSchema),
     defaultValues: {
@@ -38,7 +38,7 @@ export const FormSettings = () => {
   });
 
   function onSubmit(values: z.infer<typeof FormSettingsSchema>) {
-    changeData(values);
+    setProjectData(values);
     toast.success("Changes have been saved successfully.");
   }
 

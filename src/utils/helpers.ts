@@ -7,14 +7,17 @@ export const validateIssueType = (type: string): IssueType => {
   throw new Error(`Invalid issue type: ${type}`);
 };
 
-export const validateIssueStatus = (type: string): IssueStatus => {
-  if (
-    type === "Selected for Development" ||
-    type === "Backlog" ||
-    type === "In progress" ||
-    type === "Done"
-  ) {
-    return type;
+export function validateIssueStatus(status: string): IssueStatus {
+  switch (status) {
+    case "Backlog":
+      return IssueStatus.BACKLOG;
+    case "Selected":
+      return IssueStatus.SELECTED;
+    case "InProgress":
+      return IssueStatus.IN_PROGRESS;
+    case "Done":
+      return IssueStatus.DONE;
+    default:
+      throw new Error(`Unknown status: ${status}`);
   }
-  throw new Error(`Invalid issue type: ${type}`);
-};
+}
