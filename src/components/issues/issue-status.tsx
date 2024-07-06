@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useBoundStore from "@/store/store";
 import {
   Select,
   SelectContent,
@@ -8,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ISSUES_STATUS } from "@/constants/issues-constants";
+import { IssueStatus as IssueStatusType } from "@/types/project";
 
 const getBackgroundColorClass = (status: string) => {
   switch (status) {
@@ -20,12 +22,13 @@ const getBackgroundColorClass = (status: string) => {
   }
 };
 
-export const IssueStatus = ({ issueStatus }: { issueStatus: string }) => {
+export const IssueStatus = ({ issueStatus, id }: { issueStatus: string, id: string }) => {
   const [selectedStatus, setSelectedStatus] = useState(issueStatus);
+  const updateIssue = useBoundStore((state) => state.updateIssue);
 
-  const handleChange = (value: string) => {
-    // TODO: Add functionality
+  const handleChange = (value: IssueStatusType) => {
     setSelectedStatus(value);
+    updateIssue(id, { status: value })
   };
 
   return (

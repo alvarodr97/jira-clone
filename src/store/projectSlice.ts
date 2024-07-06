@@ -12,6 +12,7 @@ export interface ProjectSliceType extends ProjectType {
   }) => void;
   filterByTitle: (query: string) => Issue[];
   filterById: (id: string) => Issue;
+  updateIssue: (id: string, data: Partial<Issue>) => void;
 }
 
 const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
@@ -50,6 +51,14 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
       throw new Error(`Issue with id ${id} not found`);
     }
     return issue;
+  },
+
+  updateIssue: (id: string, data: Partial<Issue>) => {
+    set((state) => ({
+      issues: state.issues.map((issue) =>
+        issue.id === id ? { ...issue, ...data } : issue
+      ),
+    }));
   },
 });
 

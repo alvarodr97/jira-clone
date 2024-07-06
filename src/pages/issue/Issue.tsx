@@ -30,20 +30,23 @@ export const Issue = () => {
   return (
     <div className="flex flex-col w-full h-full py-8 pl-8 pr-6">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
-      <header className="flex justify-between mt-3 mb-6 font-bold">
-        <div className="flex flex-row">
-          <IconSVG icon={type} classname="h-6 w-6" /> {type} - {id}
+      <header className="flex justify-between mt-3 mb-6">
+        <div className="flex flex-row uppercase font-semibold text-textMedium self-center">
+          <IconSVG icon={type} classname="h-6 w-6 mr-1" /> {type} - {id}
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row space-x-4 text-sm">
           <a
             target="_blank"
-            className="flex flex-row"
+            className="flex flex-row hover:bg-[#f4f5f7] p-1"
             href="https://github.com/alvarodr97/jira-clone/issues/new"
           >
-            <IconSVG icon="Feedback" classname="h-6 w-6" />
+            <IconSVG icon="Feedback" classname="h-6 w-6 mr-2" />
             Give Feedback
           </a>
-          <IconSVG icon="Trash" classname="h-6 w-6" />
+          <IconSVG
+            icon="Trash"
+            classname="h-6 w-6 cursor-pointer hover:bg-[#f4f5f7]"
+          />
         </div>
       </header>
       <div className="grid grid-cols-2">
@@ -52,7 +55,7 @@ export const Issue = () => {
           <div>Comments</div>
         </div>
         <div className="flex flex-col">
-          <IssueStatus issueStatus={status} />
+          <IssueStatus issueStatus={status} id={id} />
           <div>Reporter: {reporterId}</div>
           <div>Assignees: Asignados</div>
           <div>Priority: {priority}</div>
