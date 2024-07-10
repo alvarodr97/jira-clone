@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import useBoundStore from "@/store/store";
 import { SearchIssueComponentBox } from "./SearchIssueComponentBox";
 import { Input } from "@/components/ui/input";
@@ -10,30 +10,29 @@ export const SearchIssueComponent = () => {
   const filterByTitle = useBoundStore((state) => state.filterByTitle);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<Issue[]>([]);
+  const [results, setResults] = useState<Issue[]>(issues.slice(0, 5));
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
     setSearchTerm(term);
-  };
 
-  const sortedIssues = useMemo(() => {
-    const sortIssues = (issues: Issue[]) =>
-      issues.sort(
+    if (term) {
+      const filteredResults = filterByTitle(term).sort(
         (a, b) =>
           new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       );
-
-    if (searchTerm) {
-      return sortIssues(filterByTitle(searchTerm));
+      setResults(filteredResults);
     } else {
-      return sortIssues(issues).slice(0, 5);
+      setResults(
+        issues
+          .sort(
+            (a, b) =>
+              new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+          )
+          .slice(0, 5)
+      );
     }
-  }, [issues, searchTerm, filterByTitle]);
-
-  useEffect(() => {
-    setResults(sortedIssues);
-  }, [sortedIssues]);
+  };
 
   return (
     <div className="flex flex-col w-full h-full overflow-y-auto mt-3">
