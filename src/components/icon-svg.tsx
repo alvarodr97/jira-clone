@@ -4,11 +4,12 @@ import { IconType } from "@/types/icon-type";
 interface Props {
   icon: IconType;
   classname: HTMLProps<HTMLElement>["className"];
+  color?: string;
 }
 
-export const IconSVG = ({ icon, classname }: Props) => {
+export const IconSVG = ({ icon, classname, color }: Props) => {
   return (
-    <svg className={classname}>
+    <svg fill="currentColor" style={{ color }} className={classname}>
       <use href={`#${icon.toLowerCase()}`} />
     </svg>
   );
