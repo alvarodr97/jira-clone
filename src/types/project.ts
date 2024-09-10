@@ -14,7 +14,7 @@ export interface Issue {
   createdAt: string;
   description: string;
   id: string;
-  priority: string;
+  priority: IssuePriority;
   reporterId: string;
   status: IssueStatus;
   title: string;
@@ -29,8 +29,16 @@ export type IssueType = "Bug" | "Story" | "Task";
 export enum IssueStatus {
   BACKLOG = "Backlog",
   SELECTED = "Selected",
-  IN_PROGRESS = "InProgress",
+  IN_PROGRESS = "In Progress",
   DONE = "Done",
+}
+
+export enum IssuePriority {
+  LOWEST = "Lowest",
+  LOW = "Low",
+  MEDIUM = "Medium",
+  HIGH = "High",
+  HIGHEST = "Highest",
 }
 
 export interface User {

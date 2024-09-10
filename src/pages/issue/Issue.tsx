@@ -3,6 +3,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { IconSVG } from "@/components/icon-svg";
 import { IssueStatus } from "@/components/issues/issue-status";
 import useBoundStore from "@/store/store";
+import { IssuePriority } from "@/components/issues/issue-priority";
 
 export const Issue = () => {
   const { projectId } = useParams();
@@ -58,7 +59,7 @@ export const Issue = () => {
           <IssueStatus issueStatus={status} id={id} />
           <div>Reporter: {reporterId}</div>
           <div>Assignees: Asignados</div>
-          <div>Priority: {priority}</div>
+          <IssuePriority issuePriority={priority} id={id} />
           <div className="mt-3 pt-3 leading-loose border-t border-borderLightest text-textMedium text-13">
             <div>Created: {createdAt}</div>
             <div>Updated: {updatedAt}</div>

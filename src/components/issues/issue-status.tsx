@@ -15,7 +15,7 @@ const getBackgroundColorClass = (status: string) => {
   switch (status) {
     case "Done":
       return "bg-green-500 text-white";
-    case "InProgress":
+    case "In Progress":
       return "bg-blue-500 text-white";
     default:
       return "bg-[#f4f5f7]";

@@ -9,7 +9,7 @@ import { FormSelect } from "../form/FormSelect";
 import { FormInput } from "../form/FormInput";
 import { FormDescription } from "../form/FormDescription";
 import { ISSUES_TYPES } from "@/constants/issues-constants";
-import { ISSUES_PRIORITY } from "@/constants/issues-constants";
+import { IssuePriority } from "@/types/project";
 
 const AddIssueSchema = z.object({
   type: z.string().min(1, { message: "Select one option" }),
@@ -64,7 +64,7 @@ export const FormAddIssue = () => {
           control={form.control}
           name="priority"
           label="Issue priority"
-          options={ISSUES_PRIORITY}
+          options={Object.values(IssuePriority)}
         />
 
         {/* Issue Summary */}

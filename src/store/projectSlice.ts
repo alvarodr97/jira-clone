@@ -1,7 +1,7 @@
 import { Issue, ProjectType } from "@/types/project";
 import { StateCreator } from "zustand";
 import project from "../assets/data/project.json";
-import { validateIssueStatus, validateIssueType } from "@/utils/helpers";
+import { validateIssuePriority, validateIssueStatus, validateIssueType } from "@/utils/helpers";
 
 export interface ProjectSliceType extends ProjectType {
   setProjectData: (values: {
@@ -28,6 +28,7 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
     ...issue,
     status: validateIssueStatus(issue.status),
     type: validateIssueType(issue.type),
+    priority: validateIssuePriority(issue.priority),
   })),
 
   setProjectData: async (values: {
