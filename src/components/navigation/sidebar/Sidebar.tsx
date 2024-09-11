@@ -1,7 +1,7 @@
 import react from "@/assets/react.png";
 import { LINKS } from "@/constants/links";
-import { SidebarLink } from "./components/SidebarLink";
-import { SidebarTitle } from "./components/SidebarTitle";
+import { SidebarLink } from "./SidebarLink";
+import { SidebarTitle } from "./SidebarTitle";
 
 export const Sidebar = () => {
   return (

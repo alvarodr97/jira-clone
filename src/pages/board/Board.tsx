@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { BoardFilter } from "./components/BoardFilter";
+import { BoardFilter } from "./BoardFilter";
 import useBoundStore from "@/store/store";
-// import { BoardDnd } from "./components/BoardDnd";
+// import { BoardDnd } from "./BoardDnd";
 
 export const Board = () => {
   const projectName = useBoundStore((state) => state.projectName);

@@ -1,4 +1,4 @@
-import { LinkProps } from "@/components/navigation/sidebar/components/SidebarLink";
+import { LinkProps } from "@/components/navigation/sidebar/SidebarLink";
 import {
   Kanban,
   Settings,

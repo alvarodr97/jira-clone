@@ -1,4 +1,4 @@
-import { TooltipNavigation } from '../../components/TooltipNavigation'
+import { TooltipNavigation } from '../TooltipNavigation'
 import { User } from 'lucide-react'
 
 export const UserIcon = () => {

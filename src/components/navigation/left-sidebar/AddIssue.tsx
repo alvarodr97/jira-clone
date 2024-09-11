@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
-import { TooltipNavigation } from "../../components/TooltipNavigation";
+import { TooltipNavigation } from "../TooltipNavigation";
 import { AddIssueContent } from "@/components/add-issue-modal/AddIssueContent";
 
 export const AddIssue = () => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { TooltipNavigation } from "../../components/TooltipNavigation";
+import { TooltipNavigation } from "../TooltipNavigation";
 import { Search } from "lucide-react";
 import { SearchIssueComponent } from "@/features/search/SearchIssueComponent";
 

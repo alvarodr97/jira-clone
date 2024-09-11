@@ -1,7 +1,7 @@
-import { SearchIssue } from "./components/SearchIssue";
-import { AddIssue } from "./components/AddIssue";
-import { UserIcon } from "./components/UserIcon";
-import { AboutIcon } from "./components/AboutIcon";
+import { SearchIssue } from "./SearchIssue";
+import { AddIssue } from "./AddIssue";
+import { UserIcon } from "./UserIcon";
+import { AboutIcon } from "./AboutIcon";
 
 export const LeftSidebar = () => {
   return (
