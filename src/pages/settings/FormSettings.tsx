@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { FormSelect } from "@/components/form/FormSelect";
 import { FormDescription } from "@/components/form/FormDescription";
 import { FormInput } from "@/components/form/FormInput";
-import { CATEGORY } from "@/constants/settings";
+import { ProjectCategoryEnum } from "@/types/project";
 
 const FormSettingsSchema = z.object({
   projectName: z
@@ -19,7 +19,9 @@ const FormSettingsSchema = z.object({
     .string()
     .min(3, { message: "URL must contain at least 3 character(s)" })
     .max(30, { message: "URL must contain less than 30 characters" }),
-  category: z.string().min(1, { message: "Select one option" }),
+  category: z.nativeEnum(ProjectCategoryEnum, {
+    errorMap: () => ({ message: "Select a valid category" }),
+  }),
   description: z.string().optional(),
 });
 
@@ -57,13 +59,28 @@ export const FormSettings = () => {
         />
 
         {/* URL Input */}
-        <FormInput control={form.control} name="url" label="URL" placeholder="https://" />
+        <FormInput
+          control={form.control}
+          name="url"
+          label="URL"
+          placeholder="https://"
+        />
 
         {/* Category select */}
-        <FormSelect control={form.control} name="category" label="Category" options={CATEGORY} />
+        <FormSelect
+          control={form.control}
+          name="category"
+          label="Category"
+          options={Object.values(ProjectCategoryEnum)}
+        />
 
         {/* Description area */}
-        <FormDescription control={form.control} name="description" label="Description" placeholder="Add a description" />
+        <FormDescription
+          control={form.control}
+          name="description"
+          label="Description"
+          placeholder="Add a description"
+        />
 
         <Button type="submit">Save</Button>
       </form>

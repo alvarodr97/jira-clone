@@ -1,8 +1,8 @@
 import { HTMLProps } from "react";
-import { IconType } from "@/types/icon-type";
+import { IconTypeI } from "@/types/icon-type";
 
 interface Props {
-  icon: IconType;
+  icon: IconTypeI;
   classname: HTMLProps<HTMLElement>["className"];
   color?: string;
 }

@@ -1,18 +1,19 @@
-import { Issue, ProjectType } from "@/types/project";
 import { StateCreator } from "zustand";
+import { ProjectCategoryEnum, ProjectTypeI } from "@/types/project";
+import { IssueI } from "@/types/issue";
 import project from "../assets/data/project.json";
-import { validateIssuePriority, validateIssueStatus, validateIssueType } from "@/utils/helpers";
+import { validateCategory, validateIssuePriority, validateIssueStatus, validateIssueType } from "@/utils/helpers";
 
-export interface ProjectSliceType extends ProjectType {
+export interface ProjectSliceType extends ProjectTypeI {
   setProjectData: (values: {
     url: string;
-    category: string;
+    category: ProjectCategoryEnum;
     projectName: string;
     description?: string | undefined;
   }) => void;
-  filterByTitle: (query: string) => Issue[];
-  filterById: (id: string) => Issue;
-  updateIssue: (id: string, data: Partial<Issue>) => void;
+  filterByTitle: (query: string) => IssueI[];
+  filterById: (id: string) => IssueI;
+  updateIssue: (id: string, data: Partial<IssueI>) => void;
 }
 
 const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
@@ -20,7 +21,7 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
   projectName: project.name,
   url: project.url,
   description: project.description,
-  category: project.category,
+  category: validateCategory(project.category) ,
   createdAt: project.createdAt,
   updatedAt: project.updatedAt,
   users: project.users,
@@ -33,7 +34,7 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
 
   setProjectData: async (values: {
     url: string;
-    category: string;
+    category: ProjectCategoryEnum;
     projectName: string;
     description?: string | undefined;
   }) => {
@@ -54,7 +55,7 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
     return issue;
   },
 
-  updateIssue: (id: string, data: Partial<Issue>) => {
+  updateIssue: (id: string, data: Partial<IssueI>) => {
     set((state) => ({
       issues: state.issues.map((issue) =>
         issue.id === id ? { ...issue, ...data } : issue

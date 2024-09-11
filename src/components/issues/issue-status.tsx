@@ -8,8 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ISSUES_STATUS } from "@/constants/issues-constants";
-import { IssueStatus as IssueStatusType } from "@/types/project";
+import { IssueStatusEnum, IssueStatusDisplay } from "@/types/issue";
 
 const getBackgroundColorClass = (status: string) => {
   switch (status) {
@@ -26,7 +25,7 @@ export const IssueStatus = ({ issueStatus, id }: { issueStatus: string, id: stri
   const [selectedStatus, setSelectedStatus] = useState(issueStatus);
   const updateIssue = useBoundStore((state) => state.updateIssue);
 
-  const handleChange = (value: IssueStatusType) => {
+  const handleChange = (value: IssueStatusEnum) => {
     setSelectedStatus(value);
     updateIssue(id, { status: value })
   };
@@ -50,7 +49,7 @@ export const IssueStatus = ({ issueStatus, id }: { issueStatus: string, id: stri
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {Object.entries(ISSUES_STATUS).map(([value, description]) => (
+            {Object.entries(IssueStatusDisplay).map(([value, description]) => (
               <SelectItem
                 key={value}
                 value={value}

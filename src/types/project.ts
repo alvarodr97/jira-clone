@@ -1,49 +1,20 @@
-export interface ProjectType {
+import { IssueI } from "./issue";
+import { UserI } from "./user";
+
+export interface ProjectTypeI {
   id: string;
   projectName: string;
   url: string;
   description: string;
-  category: string;
+  category: ProjectCategoryEnum;
   createdAt: string;
   updatedAt: string;
-  users: User[];
-  issues: Issue[];
+  issues: IssueI[];
+  users: UserI[];
 }
 
-export interface Issue {
-  createdAt: string;
-  description: string;
-  id: string;
-  priority: IssuePriority;
-  reporterId: string;
-  status: IssueStatus;
-  title: string;
-  type: IssueType;
-  updatedAt: string;
-  userIds: string[];
-  listPosition: number;
-}
-
-export type IssueType = "Bug" | "Story" | "Task";
-
-export enum IssueStatus {
-  BACKLOG = "Backlog",
-  SELECTED = "Selected",
-  IN_PROGRESS = "In Progress",
-  DONE = "Done",
-}
-
-export enum IssuePriority {
-  LOWEST = "Lowest",
-  LOW = "Low",
-  MEDIUM = "Medium",
-  HIGH = "High",
-  HIGHEST = "Highest",
-}
-
-export interface User {
-  id: string;
-  name: string;
-  avatarUrl: string;
-  projectId: string;
+export enum ProjectCategoryEnum {
+  SOFTWARE = 'Software',
+  MARKETING = 'Marketing',
+  BUSINESS = 'Business'
 }

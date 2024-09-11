@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import useBoundStore from "@/store/store";
-import { IssuePriority as IssuePriorityType } from "@/types/project";
+import { IssuePriorityEnum } from "@/types/issue";
 import { IconSVG } from "../icon-svg";
 import { ISSUES_PRIORITY } from "@/constants/issues-constants";
 
@@ -22,7 +22,7 @@ export const IssuePriority = ({
   const [selectedPriority, setSelectedPriority] = useState(issuePriority);
   const updateIssue = useBoundStore((state) => state.updateIssue);
 
-  const handleChange = (value: IssuePriorityType) => {
+  const handleChange = (value: IssuePriorityEnum) => {
     setSelectedPriority(value);
     updateIssue(id, { priority: value });
   };

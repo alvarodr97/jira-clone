@@ -1,39 +1,59 @@
-import { IssueStatus, IssueType, IssuePriority } from "@/types/project";
+import { IssueStatusEnum, IssueTypeEnum, IssuePriorityEnum } from "@/types/issue";
+import { ProjectCategoryEnum } from "@/types/project";
 
-export const validateIssueType = (type: string): IssueType => {
-  if (type === "Bug" || type === "Story" || type === "Task") {
-    return type;
+export const validateCategory = (category: string): ProjectCategoryEnum => {
+  switch (category) {
+    case "Software":
+      return ProjectCategoryEnum.SOFTWARE;
+    case "Marketing":
+      return ProjectCategoryEnum.MARKETING;
+    case "Business":
+      return ProjectCategoryEnum.BUSINESS;
+    default:
+      throw new Error(`Invalid issue type: ${category}`);
   }
-  throw new Error(`Invalid issue type: ${type}`);
 };
 
-export function validateIssueStatus(status: string): IssueStatus {
+export const validateIssueType = (type: string): IssueTypeEnum => {
+  switch (type) {
+    case "Story":
+      return IssueTypeEnum.STORY;
+    case "Task":
+      return IssueTypeEnum.TASK;
+    case "Bug":
+      return IssueTypeEnum.BUG;
+    default:
+      throw new Error(`Invalid issue type: ${type}`);
+  }
+};
+
+export function validateIssueStatus(status: string): IssueStatusEnum {
   switch (status) {
     case "Backlog":
-      return IssueStatus.BACKLOG;
+      return IssueStatusEnum.BACKLOG;
     case "Selected":
-      return IssueStatus.SELECTED;
+      return IssueStatusEnum.SELECTED;
     case "InProgress":
-      return IssueStatus.IN_PROGRESS;
+      return IssueStatusEnum.IN_PROGRESS;
     case "Done":
-      return IssueStatus.DONE;
+      return IssueStatusEnum.DONE;
     default:
       throw new Error(`Unknown status: ${status}`);
   }
 }
 
-export function validateIssuePriority(status: string): IssuePriority {
+export function validateIssuePriority(status: string): IssuePriorityEnum {
   switch (status) {
     case "Lowest":
-      return IssuePriority.LOWEST;
+      return IssuePriorityEnum.LOWEST;
     case "Low":
-      return IssuePriority.LOW;
+      return IssuePriorityEnum.LOW;
     case "Medium":
-      return IssuePriority.MEDIUM;
+      return IssuePriorityEnum.MEDIUM;
     case "High":
-      return IssuePriority.HIGH;
+      return IssuePriorityEnum.HIGH;
     case "Highest":
-      return IssuePriority.HIGHEST;
+      return IssuePriorityEnum.HIGHEST;
     default:
       throw new Error(`Unknown priority: ${status}`);
   }

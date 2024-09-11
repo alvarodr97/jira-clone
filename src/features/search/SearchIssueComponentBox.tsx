@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { IconSVG } from "@/components/icon-svg";
-import { Issue } from "@/types/project";
+import { IssueI } from "@/types/issue";
 
 interface Props {
-  issue: Issue;
+  issue: IssueI;
 }
 
 export const SearchIssueComponentBox = ({ issue }: Props) => {

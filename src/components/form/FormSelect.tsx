@@ -13,13 +13,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { User } from "@/types/project";
+import { UserI } from "@/types/user";
 
 interface Props<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   label: string;
-  options: string[] | User[];
+  options: string[] | UserI[];
 }
 
 export function FormSelect<T extends FieldValues>({

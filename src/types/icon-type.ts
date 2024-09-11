@@ -1,4 +1,4 @@
-export type IconType =
+export type IconTypeI =
   | "Arrow-Down"
   | "Arrow-Up"
   | "Board"

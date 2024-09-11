@@ -8,8 +8,7 @@ import { Button } from "@/components/ui/button";
 import { FormSelect } from "../form/FormSelect";
 import { FormInput } from "../form/FormInput";
 import { FormDescription } from "../form/FormDescription";
-import { ISSUES_TYPES } from "@/constants/issues-constants";
-import { IssuePriority } from "@/types/project";
+import { IssuePriorityEnum, IssueTypeEnum } from "@/types/issue";
 
 const AddIssueSchema = z.object({
   type: z.string().min(1, { message: "Select one option" }),
@@ -41,6 +40,7 @@ export const FormAddIssue = () => {
   });
 
   function onSubmit(values: z.infer<typeof AddIssueSchema>) {
+    // TODO: Logic
     console.log(values);
     toast.success("Changes have been saved successfully.");
   }
@@ -56,7 +56,7 @@ export const FormAddIssue = () => {
           control={form.control}
           name="type"
           label="Issue type"
-          options={ISSUES_TYPES}
+          options={Object.values(IssueTypeEnum)}
         />
 
         {/* Issue Priority */}
@@ -64,7 +64,7 @@ export const FormAddIssue = () => {
           control={form.control}
           name="priority"
           label="Issue priority"
-          options={Object.values(IssuePriority)}
+          options={Object.values(IssuePriorityEnum)}
         />
 
         {/* Issue Summary */}
@@ -72,6 +72,7 @@ export const FormAddIssue = () => {
           control={form.control}
           name="summary"
           label="Short summary"
+          autofocus
           placeholder="This is issue is about..."
         />
 

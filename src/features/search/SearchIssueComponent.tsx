@@ -2,7 +2,7 @@ import { useState } from "react";
 import useBoundStore from "@/store/store";
 import { SearchIssueComponentBox } from "./SearchIssueComponentBox";
 import { Input } from "@/components/ui/input";
-import { Issue } from "@/types/project";
+import { IssueI } from "@/types/issue";
 import { IconSVG } from "@/components/icon-svg";
 
 interface Props {
@@ -23,7 +23,7 @@ export const SearchIssueComponent = ({ setIsSearchBoxOpen }: Props) => {
   };
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState<Issue[]>(getLastFive());
+  const [results, setResults] = useState<IssueI[]>(getLastFive());
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;

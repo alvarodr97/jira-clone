@@ -12,6 +12,7 @@ interface Props<T extends FieldValues> {
   control: Control<T>;
   name: Path<T>;
   label: string;
+  autofocus?: boolean;
   placeholder: string;
 }
 
@@ -19,6 +20,7 @@ export function FormInput<T extends FieldValues>({
   control,
   name,
   label,
+  autofocus,
   placeholder,
 }: Props<T>) {
   return (
@@ -29,7 +31,7 @@ export function FormInput<T extends FieldValues>({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input autoFocus={autofocus} placeholder={placeholder} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>
