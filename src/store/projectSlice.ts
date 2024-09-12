@@ -2,7 +2,12 @@ import { StateCreator } from "zustand";
 import { ProjectCategoryEnum, ProjectTypeI } from "@/types/project";
 import { IssueI } from "@/types/issue";
 import project from "../assets/data/project.json";
-import { validateCategory, validateIssuePriority, validateIssueStatus, validateIssueType } from "@/utils/helpers";
+import {
+  validateCategory,
+  validateIssuePriority,
+  validateIssueStatus,
+  validateIssueType,
+} from "@/utils/helpers";
 
 export interface ProjectSliceType extends ProjectTypeI {
   setProjectData: (values: {
@@ -14,6 +19,7 @@ export interface ProjectSliceType extends ProjectTypeI {
   filterByTitle: (query: string) => IssueI[];
   filterById: (id: string) => IssueI;
   updateIssue: (id: string, data: Partial<IssueI>) => void;
+  addIssue: (issue: IssueI) => void;
 }
 
 const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
@@ -21,7 +27,7 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
   projectName: project.name,
   url: project.url,
   description: project.description,
-  category: validateCategory(project.category) ,
+  category: validateCategory(project.category),
   createdAt: project.createdAt,
   updatedAt: project.updatedAt,
   users: project.users,
@@ -60,6 +66,12 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
       issues: state.issues.map((issue) =>
         issue.id === id ? { ...issue, ...data } : issue
       ),
+    }));
+  },
+
+  addIssue: (issue: IssueI) => {
+    set((state) => ({
+      issues: [...state.issues, issue],
     }));
   },
 });

@@ -1,4 +1,8 @@
-import { IssueStatusEnum, IssueTypeEnum, IssuePriorityEnum } from "@/types/issue";
+import {
+  IssueStatusEnum,
+  IssueTypeEnum,
+  IssuePriorityEnum,
+} from "@/types/issue";
 import { ProjectCategoryEnum } from "@/types/project";
 
 export const validateCategory = (category: string): ProjectCategoryEnum => {
@@ -57,4 +61,8 @@ export function validateIssuePriority(status: string): IssuePriorityEnum {
     default:
       throw new Error(`Unknown priority: ${status}`);
   }
+}
+
+export function printDate(date: string): string {
+  return new Date(date).toString();
 }

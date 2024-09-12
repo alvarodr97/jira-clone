@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import useBoundStore from "@/store/store";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
@@ -8,7 +9,16 @@ import { Button } from "@/components/ui/button";
 import { FormSelect } from "../form/FormSelect";
 import { FormInput } from "../form/FormInput";
 import { FormDescription } from "../form/FormDescription";
-import { IssuePriorityEnum, IssueTypeEnum } from "@/types/issue";
+import {
+  IssuePriorityEnum,
+  IssueStatusEnum,
+  IssueTypeEnum,
+} from "@/types/issue";
+import { DialogClose } from "../ui/dialog";
+
+interface Props {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const AddIssueSchema = z.object({
   type: z.string().min(1, { message: "Select one option" }),
@@ -24,8 +34,11 @@ const AddIssueSchema = z.object({
 
 export type AddIssueSchemaType = z.infer<typeof AddIssueSchema>;
 
-export const FormAddIssue = () => {
+export const FormAddIssue = ({ setOpen }: Props) => {
+  const navigate = useNavigate();
+
   const users = useBoundStore((state) => state.users);
+  const addIssue = useBoundStore((state) => state.addIssue);
 
   const form = useForm<AddIssueSchemaType>({
     resolver: zodResolver(AddIssueSchema),
@@ -39,10 +52,31 @@ export const FormAddIssue = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof AddIssueSchema>) {
-    // TODO: Logic
-    console.log(values);
-    toast.success("Changes have been saved successfully.");
+  async function onSubmit(values: z.infer<typeof AddIssueSchema>) {
+    const generatedId = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+
+    // TODO: userId and listposition
+    addIssue({
+      id: generatedId.toString(),
+      title: values.summary,
+      description: values.description || "",
+      type: values.type as IssueTypeEnum,
+      priority: values.priority as IssuePriorityEnum,
+      status: IssueStatusEnum.BACKLOG,
+      reporterId: values.reporter,
+      userIds: [],
+      listPosition: 0,
+      createdAt: new Date().toString(),
+      updatedAt: new Date().toString(),
+    });
+
+    // await new Promise(resolve => setTimeout(resolve, 1000));
+
+    setOpen(false);
+
+    navigate("project/board");
+
+    toast.success(`Issue with ID #${generatedId} created.`);
   }
 
   return (
@@ -98,9 +132,9 @@ export const FormAddIssue = () => {
           <Button type="submit" variant="default">
             Create Issue
           </Button>
-          <Button type="button" variant="ghost">
-            Cancel
-          </Button>
+          <DialogClose asChild>
+            <Button variant="outline">Cancelar</Button>
+          </DialogClose>
         </div>
       </form>
     </Form>

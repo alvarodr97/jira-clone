@@ -8,7 +8,7 @@ interface Props {
 
 export const SearchIssueComponentBox = ({ issue }: Props) => {
   return (
-    <Link reloadDocument to={`/project/issue/${issue.id}`}>
+    <Link to={`/project/issue/${issue.id}`}>
       <div className="flex flex-row hover:bg-slate-200 p-2 gap-x-3">
         {/* Image */}
         <div className="justify-center self-center">

@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
+import useBoundStore from "@/store/store";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { IconSVG } from "@/components/icon-svg";
 import { IssueStatus } from "@/components/issues/issue-status";
-import useBoundStore from "@/store/store";
 import { IssuePriority } from "@/components/issues/issue-priority";
+import { printDate } from "@/utils/helpers";
 
 export const Issue = () => {
   const { projectId } = useParams();
@@ -61,8 +62,8 @@ export const Issue = () => {
           <div>Assignees: Asignados</div>
           <IssuePriority issuePriority={priority} id={id} />
           <div className="mt-3 pt-3 leading-loose border-t border-borderLightest text-textMedium text-13">
-            <div>Created: {createdAt}</div>
-            <div>Updated: {updatedAt}</div>
+            <div>Created: {printDate(createdAt)}</div>
+            <div>Updated: {printDate(updatedAt)}</div>
           </div>
         </div>
       </div>
