@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { IconSVG } from "@/components/icon-svg";
 import { IssueStatus } from "@/components/issues/issue-status";
 import { IssuePriority } from "@/components/issues/issue-priority";
+import { IssueTitle } from "@/components/issues/issue-title";
 import { printDate } from "@/utils/helpers";
 
 export const Issue = () => {
@@ -22,7 +23,7 @@ export const Issue = () => {
     priority,
     reporterId,
     status,
-    // title,
+    title,
     type,
     updatedAt,
   } = useBoundStore((state) => state.filterById(projectId!));
@@ -32,7 +33,7 @@ export const Issue = () => {
   return (
     <div className="flex flex-col w-full h-full py-8 pl-8 pr-6">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
-      <header className="flex justify-between mt-3 mb-6">
+      <header className="flex justify-between mt-3 mb-2">
         <div className="flex flex-row uppercase font-semibold text-textMedium self-center">
           <IconSVG icon={type} classname="h-6 w-6 mr-1" /> {type} - {id}
         </div>
@@ -51,8 +52,9 @@ export const Issue = () => {
           />
         </div>
       </header>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 space-x-2">
         <div>
+          <IssueTitle id={id} title={title} />
           <div>Description</div>
           <div>Comments</div>
         </div>

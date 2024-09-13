@@ -16,7 +16,7 @@ export interface ProjectSliceType extends ProjectTypeI {
     projectName: string;
     description?: string | undefined;
   }) => void;
-  filterByTitle: (query: string) => IssueI[];
+  filterSearch: (query: string) => IssueI[];
   filterById: (id: string) => IssueI;
   updateIssue: (id: string, data: Partial<IssueI>) => void;
   addIssue: (issue: IssueI) => void;
@@ -47,9 +47,11 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
     set((state) => ({ ...state, ...values }));
   },
 
-  filterByTitle: (query: string) => {
-    return get().issues.filter((item) =>
-      item.title.toLowerCase().includes(query.toLowerCase())
+  filterSearch: (query: string) => {
+    return get().issues.filter(
+      (item) =>
+        item.title.toLowerCase().includes(query.toLowerCase()) ||
+        item.id.includes(query)
     );
   },
 

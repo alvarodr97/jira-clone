@@ -11,7 +11,7 @@ interface Props {
 
 export const SearchIssueComponent = ({ setIsSearchBoxOpen }: Props) => {
   const issues = useBoundStore((state) => state.issues);
-  const filterByTitle = useBoundStore((state) => state.filterByTitle);
+  const filterSearch = useBoundStore((state) => state.filterSearch);
 
   const getLastFive = () => {
     return issues
@@ -30,7 +30,7 @@ export const SearchIssueComponent = ({ setIsSearchBoxOpen }: Props) => {
     setSearchTerm(term);
 
     if (term) {
-      const filteredResults = filterByTitle(term).sort(
+      const filteredResults = filterSearch(term).sort(
         (a, b) =>
           new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       );
