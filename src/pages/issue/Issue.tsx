@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useBoundStore from "@/store/store";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { IconSVG } from "@/components/icon-svg";
+import { IssueType } from "@/components/issues/issue-type";
 import { IssueTitle } from "@/components/issues/issue-title";
 import { IssueStatus } from "@/components/issues/issue-status";
 import { IssueReporter } from "@/components/issues/issue-reporter";
@@ -35,9 +36,7 @@ export const Issue = () => {
     <div className="flex flex-col w-full h-full py-8 pl-8 pr-6">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <header className="flex justify-between mt-3 mb-2">
-        <div className="flex flex-row uppercase font-semibold text-textMedium self-center">
-          <IconSVG icon={type} classname="h-6 w-6 mr-1" /> {type} - {id}
-        </div>
+        <IssueType id={id} issueType={type} />
         <div className="flex flex-row space-x-4 text-sm">
           <a
             target="_blank"
