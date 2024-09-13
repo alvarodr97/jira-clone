@@ -64,5 +64,5 @@ export function validateIssuePriority(status: string): IssuePriorityEnum {
 }
 
 export function printDate(date: string): string {
-  return new Date(date).toString();
+  return new Date(date).toString().replace(/\s*\(.*\)/, "");
 }

@@ -52,13 +52,13 @@ export const Issue = () => {
           />
         </div>
       </header>
-      <div className="grid grid-cols-2 space-x-2">
-        <div>
+      <div className="grid grid-cols-3 space-x-2">
+        <div className="col-span-2">
           <IssueTitle id={id} title={title} />
           <div>Description</div>
           <div>Comments</div>
         </div>
-        <div className="flex flex-col">
+        <div className="col-span-1 flex flex-col">
           <IssueStatus id={id} issueStatus={status} />
           <IssueReporter id={id} issueReporter={reporterId} />
           <div>Assignees: Asignados</div>

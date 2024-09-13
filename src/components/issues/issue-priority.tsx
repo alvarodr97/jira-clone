@@ -34,7 +34,7 @@ export const IssuePriority = ({
       </div>
       <Select onValueChange={handleChange} defaultValue={selectedPriority}>
         <SelectTrigger
-          className={`w-fit focus-visible:ring-0 border-none uppercase bg-[#f4f5f7]`}
+          className={`w-fit focus-visible:ring-0 border-none bg-[#f4f5f7]`}
           isArrow={false}
         >
           <SelectValue
@@ -48,10 +48,10 @@ export const IssuePriority = ({
               <SelectItem
                 key={priority}
                 value={priority}
-                className={`${selectedPriority === priority && "hidden"}`}
+                className={`p-2 ${selectedPriority === priority && "hidden"}`}
                 isChecked={false}
               >
-                <div className="flex flex-row space-x-2">
+                <div className="flex flex-row space-x-2 items-center">
                   <IconSVG icon={icon} classname="w-6 h-6" color={color} />{" "}
                   <span>{priority}</span>
                 </div>
