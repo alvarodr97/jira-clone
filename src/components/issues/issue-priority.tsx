@@ -27,15 +27,14 @@ export const IssuePriority = ({
     updateIssue(id, { priority: value });
   };
 
-  // TODO: Fix select
   return (
     <>
       <div className="mt-6 mb-1 uppercase text-textMedium text-13 font-bold">
         Priority
       </div>
-      <Select onValueChange={handleChange}>
+      <Select onValueChange={handleChange} defaultValue={selectedPriority}>
         <SelectTrigger
-          className={`w-fit focus-visible:ring-0 font-semibold border-none uppercase bg-[#f4f5f7]`}
+          className={`w-fit focus-visible:ring-0 border-none uppercase bg-[#f4f5f7]`}
           isArrow={false}
         >
           <SelectValue
@@ -45,15 +44,19 @@ export const IssuePriority = ({
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {
-              ISSUES_PRIORITY.map(({priority, icon, color}) => (
-                <SelectItem key={priority} value={priority} className={`${selectedPriority === priority && "hidden"}`} isChecked={false}>
-                  <span className="flex flex-row">
-                    <IconSVG icon={icon} classname="w-6 h-6" color={color} /> {priority} 
-                  </span>
-                  </SelectItem>
-              ))
-            }
+            {ISSUES_PRIORITY.map(({ priority, icon, color }) => (
+              <SelectItem
+                key={priority}
+                value={priority}
+                className={`${selectedPriority === priority && "hidden"}`}
+                isChecked={false}
+              >
+                <div className="flex flex-row space-x-2">
+                  <IconSVG icon={icon} classname="w-6 h-6" color={color} />{" "}
+                  <span>{priority}</span>
+                </div>
+              </SelectItem>
+            ))}
           </SelectGroup>
         </SelectContent>
       </Select>

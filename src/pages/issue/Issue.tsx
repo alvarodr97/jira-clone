@@ -2,9 +2,10 @@ import { useParams } from "react-router-dom";
 import useBoundStore from "@/store/store";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { IconSVG } from "@/components/icon-svg";
-import { IssueStatus } from "@/components/issues/issue-status";
-import { IssuePriority } from "@/components/issues/issue-priority";
 import { IssueTitle } from "@/components/issues/issue-title";
+import { IssueStatus } from "@/components/issues/issue-status";
+import { IssueReporter } from "@/components/issues/issue-reporter";
+import { IssuePriority } from "@/components/issues/issue-priority";
 import { printDate } from "@/utils/helpers";
 
 export const Issue = () => {
@@ -59,10 +60,10 @@ export const Issue = () => {
           <div>Comments</div>
         </div>
         <div className="flex flex-col">
-          <IssueStatus issueStatus={status} id={id} />
-          <div>Reporter: {reporterId}</div>
+          <IssueStatus id={id} issueStatus={status} />
+          <IssueReporter id={id} issueReporter={reporterId} />
           <div>Assignees: Asignados</div>
-          <IssuePriority issuePriority={priority} id={id} />
+          <IssuePriority id={id} issuePriority={priority} />
           <div className="mt-3 pt-3 leading-loose border-t border-borderLightest text-textMedium text-13">
             <div>Created: {printDate(createdAt)}</div>
             <div>Updated: {printDate(updatedAt)}</div>

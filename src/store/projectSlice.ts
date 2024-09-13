@@ -64,9 +64,10 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
   },
 
   updateIssue: (id: string, data: Partial<IssueI>) => {
+    const updatedIssue = new Date() as unknown as string;
     set((state) => ({
       issues: state.issues.map((issue) =>
-        issue.id === id ? { ...issue, ...data } : issue
+        issue.id === id ? { ...issue, ...data, updatedAt: updatedIssue } : issue
       ),
     }));
   },

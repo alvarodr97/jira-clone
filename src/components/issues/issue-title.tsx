@@ -7,6 +7,7 @@ export const IssueTitle = ({ title, id }: { title: string; id: string }) => {
   const [term, setTerm] = useState(title);
 
   function onBlur() {
+    if (term.trim() === title.trim()) return;
     updateIssue(id, { title: term });
   }
 
