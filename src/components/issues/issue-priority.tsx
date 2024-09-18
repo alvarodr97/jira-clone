@@ -34,7 +34,7 @@ export const IssuePriority = ({
       </div>
       <Select onValueChange={handleChange} defaultValue={selectedPriority}>
         <SelectTrigger
-          className={`w-fit focus-visible:ring-0 border-none bg-[#f4f5f7]`}
+          className={`w-fit focus-visible:ring-0 border-none bg-[#f4f5f7] hover:bg-[#eceef0]`}
           isArrow={false}
         >
           <SelectValue

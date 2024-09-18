@@ -32,7 +32,7 @@ export const IssueReporter = ({
       </div>
       <Select onValueChange={handleChange} defaultValue={selectedReporter}>
         <SelectTrigger
-          className={`w-fit focus-visible:ring-0 border-none bg-[#f4f5f7]`}
+          className={`w-fit focus-visible:ring-0 border-none bg-[#f4f5f7] hover:bg-[#eceef0]`}
           isArrow={false}
         >
           <SelectValue

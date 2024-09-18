@@ -37,7 +37,7 @@ export const IssueStatus = ({ issueStatus, id }: { issueStatus: string, id: stri
       </div>
       <Select onValueChange={handleChange}>
         <SelectTrigger
-          className={`w-fit focus-visible:ring-0 border-none uppercase ${getBackgroundColorClass(
+          className={`w-fit focus-visible:ring-0 border-none uppercase hover:bg-opacity-70 ${getBackgroundColorClass(
             selectedStatus
           )}`}
           isArrow={false}
