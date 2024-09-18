@@ -1,4 +1,5 @@
 import { StateCreator } from "zustand";
+import { toast } from "sonner";
 import { ProjectCategoryEnum, ProjectTypeI } from "@/types/project";
 import { IssueI } from "@/types/issue";
 import project from "../assets/data/project.json";
@@ -70,6 +71,7 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
         issue.id === id ? { ...issue, ...data, updatedAt: updatedIssue } : issue
       ),
     }));
+    toast.success("Changes saved!")
   },
 
   addIssue: (issue: IssueI) => {

@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { IconSVG } from "@/components/icon-svg";
 import { IssueType } from "@/components/issues/issue-type";
 import { IssueTitle } from "@/components/issues/issue-title";
+import { IssueDescription } from "@/components/issues/issue-description";
 import { IssueStatus } from "@/components/issues/issue-status";
 import { IssueReporter } from "@/components/issues/issue-reporter";
 import { IssuePriority } from "@/components/issues/issue-priority";
@@ -20,7 +21,7 @@ export const Issue = () => {
 
   const {
     createdAt,
-    // description,
+    description,
     id,
     priority,
     reporterId,
@@ -52,10 +53,10 @@ export const Issue = () => {
           />
         </div>
       </header>
-      <div className="grid grid-cols-3 space-x-2">
+      <div className="grid grid-cols-3 space-x-3">
         <div className="col-span-2">
           <IssueTitle id={id} title={title} />
-          <div>Description</div>
+          <IssueDescription id={id} issueDescription={description} />
           <div>Comments</div>
         </div>
         <div className="col-span-1 flex flex-col">
