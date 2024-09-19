@@ -129,11 +129,11 @@ export const FormAddIssue = ({ setOpen }: Props) => {
         {/* TODO: Asignees */}
 
         <div className="flex flex-row gap-x-2 justify-end">
-          <Button type="submit" variant="default">
+          <Button type="submit" variant="form">
             Create Issue
           </Button>
           <DialogClose asChild>
-            <Button variant="outline">Cancelar</Button>
+            <Button variant="ghost">Cancelar</Button>
           </DialogClose>
         </div>
       </form>

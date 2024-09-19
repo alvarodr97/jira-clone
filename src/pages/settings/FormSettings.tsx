@@ -82,7 +82,7 @@ export const FormSettings = () => {
           placeholder="Add a description"
         />
 
-        <Button type="submit">Save</Button>
+        <Button variant="form" type="submit">Save</Button>
       </form>
     </Form>
   );
