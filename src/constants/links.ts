@@ -16,6 +16,11 @@ export const LINKS: LinkProps[] = [
     pathName: "Kanban Board",
   },
   {
+    icon: LineChart,
+    path: "/project/reports",
+    pathName: "Reports",
+  },
+  {
     icon: Settings,
     path: "/project/settings",
     pathName: "Project Settings",
@@ -34,11 +39,6 @@ export const LINKS: LinkProps[] = [
     icon: NotebookText,
     path: "",
     pathName: "Pages",
-  },
-  {
-    icon: LineChart,
-    path: "",
-    pathName: "Reports",
   },
   {
     icon: Puzzle,

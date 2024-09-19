@@ -8,6 +8,7 @@ import {
 import "./index.css";
 import App from "./App";
 import { Board } from "./pages/board/Board";
+import { Reports } from "./features/reports/components/Reports";
 import { Settings } from "./pages/settings/Settings";
 import { Issue } from "./pages/issue/Issue";
 import { ErrorIssue } from "./pages/issue/ErrorIssue";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "project/board",
         element: <Board />,
+      },
+      {
+        path: "project/reports",
+        element: <Reports />,
       },
       {
         path: "project/settings",

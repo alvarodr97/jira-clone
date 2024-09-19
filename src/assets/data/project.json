@@ -162,7 +162,7 @@
         "description": "<h2>Try assigning this issue to <strong><u>Spider Man</u></strong>. <span style='color: rgb(51, 51, 51);'>🤣&nbsp;🤣&nbsp;🤣</span></h2>",
         "type": "Task",
         "status": "Selected",
-        "priority": "Low",
+        "priority": "Lowest",
         "listPosition": 2,
         "createdAt": "2020-06-12T14:40:01.350Z",
         "updatedAt": "2020-06-12T14:51:09.653Z",
