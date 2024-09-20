@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 import useBoundStore from "@/store/store";
 import { IssuePriorityEnum } from "@/types/issue";
-import { IconSVG } from "../icon-svg";
+import { IconSVG } from "../../../components/icon-svg";
 import { ISSUES_PRIORITY } from "@/constants/issues-constants";
 
 export const IssuePriority = ({

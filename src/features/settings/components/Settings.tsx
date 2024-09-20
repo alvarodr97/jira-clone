@@ -1,4 +1,4 @@
-import { ProjectLayout } from "../ProjectLayout";
+import { ProjectLayout } from "@/components/ProjectLayout";
 import { FormSettings } from "./FormSettings";
 
 export const Settings = () => {

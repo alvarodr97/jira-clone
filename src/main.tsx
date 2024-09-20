@@ -7,12 +7,12 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import { Board } from "./pages/board/Board";
+import { Board } from "./features/board/components/Board";
 import { Reports } from "./features/reports/components/Reports";
-import { Settings } from "./pages/settings/Settings";
-import { Issue } from "./pages/issue/Issue";
-import { ErrorIssue } from "./pages/issue/ErrorIssue";
-import { ErrorPage } from "./pages/ErrorPage";
+import { Settings } from "./features/settings/components/Settings";
+import { Issue } from "./features/issue/components/Issue";
+import { ErrorIssue } from "./features/issue/components/ErrorIssue";
+import { ErrorPage } from "./components/ErrorPage";
 
 const router = createBrowserRouter([
   {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { TooltipNavigation } from "../TooltipNavigation";
 import { Search } from "lucide-react";
-import { SearchIssueComponent } from "@/features/search/SearchIssueComponent";
+import { SearchIssueComponent } from "@/features/search/components/SearchIssueComponent";
 
 export const SearchIssue = () => {
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);

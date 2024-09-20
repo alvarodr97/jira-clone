@@ -3,7 +3,7 @@ import useBoundStore from "@/store/store";
 import ReactQuill from "react-quill";
 import DOMPurify from "dompurify";
 import { quillConfiguration } from "@/config/editor";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 
 import "react-quill/dist/quill.snow.css";
 

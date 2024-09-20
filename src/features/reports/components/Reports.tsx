@@ -1,5 +1,5 @@
 import useBoundStore from "@/store/store";
-import { ProjectLayout } from "@/pages/ProjectLayout";
+import { ProjectLayout } from "@/components/ProjectLayout";
 import { ReportGraph } from "./ReportGraph";
 
 export const Reports = () => {

@@ -2,12 +2,12 @@ import { useParams } from "react-router-dom";
 import useBoundStore from "@/store/store";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { IconSVG } from "@/components/icon-svg";
-import { IssueType } from "@/components/issues/issue-type";
-import { IssueTitle } from "@/components/issues/issue-title";
-import { IssueDescription } from "@/components/issues/issue-description";
-import { IssueStatus } from "@/components/issues/issue-status";
-import { IssueReporter } from "@/components/issues/issue-reporter";
-import { IssuePriority } from "@/components/issues/issue-priority";
+import { IssueType } from "@/features/issue/components/issue-type";
+import { IssueTitle } from "@/features/issue/components/issue-title";
+import { IssueDescription } from "@/features/issue/components/issue-description";
+import { IssueStatus } from "@/features/issue/components/issue-status";
+import { IssueReporter } from "@/features/issue/components/issue-reporter";
+import { IssuePriority } from "@/features/issue/components/issue-priority";
 import { printDate } from "@/utils/helpers";
 
 export const Issue = () => {

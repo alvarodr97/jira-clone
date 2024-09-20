@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { IssueTypeEnum } from "@/types/issue";
-import { IconSVG } from "../icon-svg";
+import { IconSVG } from "../../../components/icon-svg";
 
 export const IssueType = ({
   issueType,
