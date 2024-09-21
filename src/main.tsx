@@ -12,7 +12,7 @@ import { Reports } from "./features/reports/components/Reports";
 import { Settings } from "./features/settings/components/Settings";
 import { Issue } from "./features/issue/components/Issue";
 import { ErrorIssue } from "./features/issue/components/ErrorIssue";
-import { ErrorPage } from "./components/ErrorPage";
+import { MainError } from "./components/errors/MainError";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorIssue />,
       },
     ],
-    errorElement: <ErrorPage />,
+    errorElement: <MainError />,
   },
 ]);
 
