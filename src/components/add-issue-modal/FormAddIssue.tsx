@@ -74,7 +74,7 @@ export const FormAddIssue = ({ setOpen }: Props) => {
 
     setOpen(false);
 
-    navigate("project/board");
+    navigate("board");
 
     toast.success(`Issue with ID #${generatedId} created.`);
   }

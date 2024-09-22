@@ -1,9 +1,9 @@
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { BoardFilter } from "./BoardFilter";
 import useBoundStore from "@/store/store";
+import { BoardFilter } from "@/features/board/components/BoardFilter";
 // import { BoardDnd } from "./BoardDnd";
 
-export const Board = () => {
+export const BoardRoute = () => {
   const projectName = useBoundStore((state) => state.projectName);
   const breadcrumbs: string[] = ["Projects", projectName, "Kanban Board"];
 

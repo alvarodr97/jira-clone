@@ -10,7 +10,7 @@ import { IssueReporter } from "@/features/issue/components/issue-reporter";
 import { IssuePriority } from "@/features/issue/components/issue-priority";
 import { printDate } from "@/utils/helpers";
 
-export const Issue = () => {
+export const IssueRoute = () => {
   const { projectId } = useParams();
 
   // TODO: Redirect if there is no projectId
