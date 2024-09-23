@@ -5,8 +5,8 @@ import { SidebarTitle } from "./SidebarTitle";
 
 export const Sidebar = () => {
   return (
-    <div className="flex flex-col h-screen p-3 bg-sidebarGrey max-w-60">
-      <div className="flex-grow overflow-auto min-h-0">
+    <div className="flex flex-col w-60 h-screen p-3 bg-sidebarGrey">
+      <div className="overflow-auto min-h-0">
         {/* React icon container */}
         <div className="flex flex-row gap-x-2 py-5">
           <img src={react} className="w-12 h-12" />

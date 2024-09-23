@@ -5,15 +5,15 @@ import { AboutIcon } from "./AboutIcon";
 
 export const LeftSidebar = () => {
   return (
-    <div className="h-screen flex flex-col justify-between bg-sidebar">
+    <div className="h-screen flex flex-col w-16 py-5 justify-between items-center bg-sidebar">
       {/* Top Icons */}
-      <div className="p-4 flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-4">
         <SearchIssue />
         <AddIssue />
       </div>
 
       {/* Bottom Icons */}
-      <div className="p-4 flex flex-col gap-y-2">
+      <div className="flex flex-col gap-y-4">
         <UserIcon />
         <AboutIcon />
       </div>
