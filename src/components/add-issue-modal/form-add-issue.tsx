@@ -133,7 +133,7 @@ export const FormAddIssue = ({ setOpen }: Props) => {
             Create Issue
           </Button>
           <DialogClose asChild>
-            <Button variant="ghost">Cancelar</Button>
+            <Button variant="ghost">Cancel</Button>
           </DialogClose>
         </div>
       </form>

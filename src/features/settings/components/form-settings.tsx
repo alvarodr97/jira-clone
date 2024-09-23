@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useBoundStore from "@/store/store";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -29,6 +30,7 @@ export type SettingsSchemaType = z.infer<typeof FormSettingsSchema>;
 
 export const FormSettings = () => {
   const { projectName, category, url, description, setProjectData } = useBoundStore();
+
   const form = useForm<SettingsSchemaType>({
     resolver: zodResolver(FormSettingsSchema),
     defaultValues: {
@@ -82,7 +84,16 @@ export const FormSettings = () => {
           placeholder="Add a description"
         />
 
-        <Button variant="form" type="submit">Save</Button>
+        <div className="flex flex-row gap-x-2">
+          <Button variant="form" type="submit">
+            Save
+          </Button>
+          <Link to="/project/board">
+            <Button variant="ghost" type="submit">
+              Cancel
+            </Button>
+          </Link>
+        </div>
       </form>
     </Form>
   );

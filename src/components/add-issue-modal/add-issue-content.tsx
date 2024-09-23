@@ -1,4 +1,4 @@
-import { FormAddIssue } from "./FormAddIssue";
+import { FormAddIssue } from "./form-add-issue";
 
 interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
 import { TooltipNavigation } from "../TooltipNavigation";
-import { AddIssueContent } from "@/components/add-issue-modal/AddIssueContent";
+import { AddIssueContent } from "@/components/add-issue-modal/add-issue-content";
 
 export const AddIssue = () => {
   const [open, setOpen] = useState(false);
