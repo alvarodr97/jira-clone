@@ -17,13 +17,13 @@ export const SidebarLink = ({ icon: Icon, path, pathName }: LinkProps) => {
         to={path}
         title={pathName}
         className={({ isActive }) => {
-          return `flex flex-row p-2 gap-x-2 hover:bg-activeLink ${
+          return `flex flex-row py-2 px-3 gap-x-2 hover:bg-activeLink ${
             isActive && "bg-activeLink text-activeLinkText"
           }`;
         }}
       >
         <Icon />
-        <span>{pathName}</span>
+        <span className="font-[450]">{pathName}</span>
       </NavLink>
     );
   }
@@ -33,10 +33,10 @@ export const SidebarLink = ({ icon: Icon, path, pathName }: LinkProps) => {
       <div
         key={path}
         title={pathName}
-        className="group relative flex flex-row p-2 gap-x-2 hover:bg-activeLink cursor-not-allowed"
+        className="group relative flex flex-row py-2 px-3 gap-x-2 hover:bg-activeLink cursor-not-allowed"
       >
         <Icon />
-        <span className="group-hover:opacity-0">{pathName}</span>
+        <span className="font-[450] group-hover:opacity-0">{pathName}</span>
         <span className="group-hover:opacity-100 opacity-0 inline-block absolute left-10 font-bold">
           Not implemented
         </span>

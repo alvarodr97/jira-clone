@@ -27,7 +27,7 @@ export const IssueType = ({
   };
 
   return (
-    <div className="ml-[-14px]">
+    <div className="ml-[-10px]">
       <Select onValueChange={handleChange} defaultValue={selectedType}>
         <SelectTrigger
           className={`w-fit focus-visible:ring-0 border-none hover:bg-gray-300/40 focus:hover:bg-white`}

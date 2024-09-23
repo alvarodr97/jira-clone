@@ -13,7 +13,7 @@ export const IssueTitle = ({ title, id }: { title: string; id: string }) => {
 
   return (
     <TextareaAutosize
-      className="w-full text-2xl p-1 font-medium ml-[-8px] resize-none hover:bg-gray-300/40 focus:hover:bg-white"
+      className="w-full text-2xl p-1 font-medium resize-none hover:bg-gray-300/40 focus:hover:bg-white"
       value={term}
       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
         setTerm(e.target.value)

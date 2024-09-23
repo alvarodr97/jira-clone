@@ -42,6 +42,9 @@ export const IssueDescription = ({
 
   return (
     <div>
+      <div className="mt-2 mb-1 px-1 text-15 text-textMedium font-semibold">
+        Description
+      </div>
       {isEditing ? (
         <div>
           <ReactQuill
@@ -69,7 +72,7 @@ export const IssueDescription = ({
           onClick={() => setIsEditing(true)}
         >
           <div
-            className="ql-editor"
+            className="ql-editor !p-1"
             dangerouslySetInnerHTML={{
               __html:
                 DOMPurify.sanitize(description) || "Click to add description",

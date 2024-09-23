@@ -53,7 +53,7 @@ export const IssueRoute = () => {
           />
         </div>
       </header>
-      <div className="grid grid-cols-3 space-x-3">
+      <div className="grid grid-cols-3 space-x-5">
         <div className="col-span-2">
           <IssueTitle id={id} title={title} />
           <IssueDescription id={id} issueDescription={description} />
