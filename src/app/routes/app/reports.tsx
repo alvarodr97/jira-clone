@@ -1,6 +1,6 @@
 import useBoundStore from "@/store/store";
-import { ProjectLayout } from "@/components/layouts/ProjectLayout";
-import { ReportGraph } from "@/features/reports/components/ReportGraph";
+import { ProjectLayout } from "@/components/layouts/project-layout";
+import { ReportGraph } from "@/features/reports/components/report-graph";
 
 export const ReportsRoute = () => {
   const issues = useBoundStore((state) => state.issues);

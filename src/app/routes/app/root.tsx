@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Outlet, useLocation } from "react-router-dom";
 import { AppLayout } from "@/components/layouts/app-layout";
-import { MainErrorFallback } from "@/components/errors/MainError";
+import { MainErrorFallback } from "@/components/errors/main-error";
 
 export const AppRoot = () => {
   const location = useLocation();

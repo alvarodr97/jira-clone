@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 
-export const ErrorIssue = () => {
+export const IssueError = () => {
   const { projectId } = useParams();
 
   return (

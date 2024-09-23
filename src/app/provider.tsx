@@ -2,7 +2,7 @@ import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
-import { MainErrorFallback } from "@/components/errors/MainError";
+import { MainErrorFallback } from "@/components/errors/main-error";
 
 interface AppProviderProps {
   children: React.ReactNode;

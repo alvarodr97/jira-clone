@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { AppRoot } from "./routes/app/root";
-import { ErrorIssue } from "@/features/issue/components/ErrorIssue";
+import { IssueError } from "@/features/issue/components/issue-error";
 
 export const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
@@ -59,7 +59,7 @@ export const createAppRouter = (queryClient: QueryClient) =>
         },
         {
           path: "issue/:projectId",
-          errorElement: <ErrorIssue />,
+          errorElement: <IssueError />,
           lazy: async () => {
             const { IssueRoute } = await import("./routes/app/issue");
             return { Component: IssueRoute };
