@@ -6,15 +6,15 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { FormSelect } from "../form/FormSelect";
-import { FormInput } from "../form/FormInput";
-import { FormDescription } from "../form/FormDescription";
+import { FormSelect } from "../../components/form/form-select";
+import { FormInput } from "../../components/form/form-input";
+import { FormDescription } from "../../components/form/form-description";
 import {
   IssuePriorityEnum,
   IssueStatusEnum,
   IssueTypeEnum,
 } from "@/types/issue";
-import { DialogClose } from "../ui/dialog";
+import { DialogClose } from "../../components/ui/dialog";
 
 interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;

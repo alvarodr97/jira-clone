@@ -1,4 +1,4 @@
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import useBoundStore from "@/store/store";
 import { BoardFilter } from "@/features/board/components/BoardFilter";
 // import { BoardDnd } from "./BoardDnd";

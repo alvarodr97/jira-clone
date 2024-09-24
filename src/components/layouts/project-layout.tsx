@@ -1,5 +1,5 @@
 import useBoundStore from "@/store/store";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 interface Props {
   pageTitle: string;

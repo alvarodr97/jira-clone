@@ -6,9 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { FormSelect } from "@/components/form/FormSelect";
-import { FormDescription } from "@/components/form/FormDescription";
-import { FormInput } from "@/components/form/FormInput";
+import { FormSelect } from "@/components/form/form-select";
+import { FormDescription } from "@/components/form/form-description";
+import { FormInput } from "@/components/form/form-input";
 import { ProjectCategoryEnum } from "@/types/project";
 
 const FormSettingsSchema = z.object({

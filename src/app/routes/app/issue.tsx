@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import useBoundStore from "@/store/store";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { IconSVG } from "@/components/icon-svg";
 import { IssueType } from "@/features/issue/components/issue-type";
 import { IssueTitle } from "@/features/issue/components/issue-title";
