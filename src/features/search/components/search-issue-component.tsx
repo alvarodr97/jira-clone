@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useBoundStore from "@/store/store";
-import { SearchIssueComponentBox } from "./SearchIssueComponentBox";
+import { SearchIssueComponentBox } from "./search-issue-component-box";
 import { Input } from "@/components/ui/input";
 import { IssueI } from "@/types/issue";
 import { IconSVG } from "@/components/icon-svg";
@@ -45,11 +45,14 @@ export const SearchIssueComponent = ({ setIsSearchBoxOpen }: Props) => {
       {/* Search bar */}
       <Input
         type="text"
-        placeholder="Search issues by title"
+        placeholder="Search issues by title or id"
+        className="text-textMedium"
         value={searchTerm}
         onChange={handleSearch}
       />
-      <h4 className="font-bold text-sm mb-3 mt-10">RECENT ISSUES</h4>
+      <h1 className="text-textMedium font-bold text-xs uppercase pb-3 mt-10">
+        RECENT ISSUES
+      </h1>
 
       {searchTerm.length != 0 && results.length === 0 ? (
         // No results
@@ -57,11 +60,13 @@ export const SearchIssueComponent = ({ setIsSearchBoxOpen }: Props) => {
           <div>
             <IconSVG icon="No-result" classname="h-36 w-36" />
           </div>
-          <div className="flex flex-col gap-y-2">
-            <p className="font-bold">
+          <div className="flex flex-col gap-y-2 justify-center items-center">
+            <p className="font-bold text-textDark text-15">
               We couldn't find anything matching your search
             </p>
-            <p className="text-sm">Try again with a different term.</p>
+            <p className="text-13 text-textMedium">
+              Try again with a different term.
+            </p>
           </div>
         </div>
       ) : (

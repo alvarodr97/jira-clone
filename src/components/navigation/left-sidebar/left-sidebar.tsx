@@ -1,7 +1,7 @@
-import { SearchIssue } from "./SearchIssue";
-import { AddIssue } from "./AddIssue";
-import { UserIcon } from "./UserIcon";
-import { AboutIcon } from "./AboutIcon";
+import { SearchIssue } from "./search-issue";
+import { AddIssue } from "./add-issue";
+import { UserIcon } from "./user-icon";
+import { AboutIcon } from "./about-icon";
 
 export const LeftSidebar = () => {
   return (

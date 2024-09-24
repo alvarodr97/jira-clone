@@ -17,8 +17,8 @@ export const SearchIssueComponentBox = ({ issue }: Props) => {
 
         {/* Issue */}
         <div className="flex flex-col w-full">
-          <span className="text-base">{issue.title}</span>
-          <span className="uppercase text-xs">{issue.type} - {issue.id}</span>
+          <span className="text-textDark text-15">{issue.title}</span>
+          <span className="uppercase text-xs text-textMedium ">{issue.type} - {issue.id}</span>
         </div>
       </div>
     </Link>

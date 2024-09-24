@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { TooltipNavigation } from "../TooltipNavigation";
+import { TooltipNavigation } from "../tooltip-navigation";
 import { Search } from "lucide-react";
-import { SearchIssueComponent } from "@/features/search/components/SearchIssueComponent";
+import { SearchIssueComponent } from "@/features/search/components/search-issue-component";
 
 export const SearchIssue = () => {
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
@@ -15,7 +15,7 @@ export const SearchIssue = () => {
         </SheetTrigger>
       </TooltipNavigation>
 
-      <SheetContent side="left">
+      <SheetContent side="left" style={{ maxWidth: "30rem" }}>
         <SearchIssueComponent setIsSearchBoxOpen={setIsSearchBoxOpen} />
       </SheetContent>
     </Sheet>

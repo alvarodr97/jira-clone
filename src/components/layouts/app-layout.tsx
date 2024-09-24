@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { LeftSidebar } from "../navigation/left-sidebar/LeftSidebar";
-import { Sidebar } from "../navigation/sidebar/Sidebar";
+import { LeftSidebar } from "../navigation/left-sidebar/left-sidebar";
+import { Sidebar } from "../navigation/sidebar/sidebar";
 import { useNavigation } from "react-router-dom";
 
 interface AppLayoutProps {

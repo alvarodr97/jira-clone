@@ -3,7 +3,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { TooltipNavigation } from "../TooltipNavigation";
+import { TooltipNavigation } from "../tooltip-navigation";
 import { HelpCircle } from "lucide-react";
 
 export const AboutIcon = () => {
