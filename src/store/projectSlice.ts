@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand";
 import { toast } from "sonner";
 import { ProjectCategoryEnum, ProjectTypeI } from "@/types/project";
-import { IssueI } from "@/types/issue";
+import { IssueI, IssueStatusEnum } from "@/types/issue";
 import project from "../assets/data/project.json";
 import {
   validateCategory,
@@ -19,8 +19,10 @@ export interface ProjectSliceType extends ProjectTypeI {
   }) => void;
   filterSearch: (query: string) => IssueI[];
   filterById: (id: string) => IssueI;
-  updateIssue: (id: string, data: Partial<IssueI>) => void;
+  reduceByStatus: () => Record<IssueStatusEnum, IssueI[]>;
+  getUserUrl: (id: string) => string;
   addIssue: (issue: IssueI) => void;
+  updateIssue: (id: string, data: Partial<IssueI>) => void;
 }
 
 const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
@@ -64,6 +66,29 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
     return issue;
   },
 
+  reduceByStatus: () => {
+    return get().issues.reduce((acc, issue) => {
+      const { status } = issue;
+
+      if (!acc[status]) {
+        acc[status] = [];
+      }
+
+      acc[status].push(issue);
+      return acc;
+    }, {} as Record<IssueStatusEnum, IssueI[]>);
+  },
+
+  getUserUrl: (id: string) => {
+    return get().users.find((user) => user.id === id)!.avatarUrl;
+  },
+
+  addIssue: (issue: IssueI) => {
+    set((state) => ({
+      issues: [...state.issues, issue],
+    }));
+  },
+
   updateIssue: (id: string, data: Partial<IssueI>) => {
     const updatedIssue = new Date() as unknown as string;
     set((state) => ({
@@ -71,13 +96,7 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
         issue.id === id ? { ...issue, ...data, updatedAt: updatedIssue } : issue
       ),
     }));
-    toast.success("Changes saved!")
-  },
-
-  addIssue: (issue: IssueI) => {
-    set((state) => ({
-      issues: [...state.issues, issue],
-    }));
+    toast.success("Changes saved!");
   },
 });
 

@@ -1,14 +1,14 @@
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import useBoundStore from "@/store/store";
 import { BoardFilter } from "@/features/board/components/BoardFilter";
-// import { BoardDnd } from "./BoardDnd";
+import { BoardDnd } from "@/features/board/components/BoardDnd";
 
 export const BoardRoute = () => {
   const projectName = useBoundStore((state) => state.projectName);
   const breadcrumbs: string[] = ["Projects", projectName, "Kanban Board"];
 
   return (
-    <div className="flex flex-col w-full h-full py-8 pl-8 pr-6">
+    <div className="flex flex-col w-full h-screen py-8 pl-8 pr-6">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <header className="flex justify-between mt-3">
         {/* Title */}
@@ -26,7 +26,7 @@ export const BoardRoute = () => {
       <BoardFilter />
 
       {/* Board drag and drop */}
-      {/* <BoardDnd /> */}
+      <BoardDnd />
     </div>
   );
 };

@@ -1,3 +1,13 @@
+import useBoundStore from "@/store/store";
+import Board from "../dnd/board/Board";
+
 export const BoardDnd = () => {
-  return <div>BoardDnd</div>;
+  const reduceByStatus = useBoundStore((state) => state.reduceByStatus);
+  const issues = reduceByStatus();
+
+  return (
+    <div>
+      <Board initial={issues} withScrollableColumns />
+    </div>
+  );
 };
