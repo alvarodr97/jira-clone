@@ -67,7 +67,18 @@ const createProjectSlice: StateCreator<ProjectSliceType> = (set, get) => ({
   },
 
   reduceByStatus: () => {
-    return get().issues.reduce((acc, issue) => {
+    const statusOrder = {
+      [IssueStatusEnum.BACKLOG]: 1,
+      [IssueStatusEnum.SELECTED]: 2,
+      [IssueStatusEnum.IN_PROGRESS]: 3,
+      [IssueStatusEnum.DONE]: 4,
+    };
+
+    const sortedIssues = [...get().issues].sort((a, b) => {
+      return statusOrder[a.status] - statusOrder[b.status];
+    });
+
+    return sortedIssues.reduce((acc, issue) => {
       const { status } = issue;
 
       if (!acc[status]) {
