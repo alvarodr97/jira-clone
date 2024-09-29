@@ -3,7 +3,7 @@ import { grid, borderRadius } from "../styles/constants";
 import { Draggable } from "react-beautiful-dnd";
 import QuoteList from "../styles/list";
 import Title from "../styles/title";
-import { IssueI } from "@/types/issue";
+import { IssueI, IssueStatusDisplay, IssueStatusEnum } from "@/types/issue";
 
 const Container = styled.div`
   margin: ${grid}px;
@@ -11,7 +11,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Header = styled.div<{ isDragging: boolean }>`
+const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,9 +38,9 @@ const Column = (props: ColumnProps) => {
     <Draggable draggableId={title} index={index} isDragDisabled>
       {(provided, snapshot) => (
         <Container ref={provided.innerRef} {...provided.draggableProps}>
-          <Header isDragging={snapshot.isDragging}>
+          <Header>
             <Title
-              title={title}
+              title={IssueStatusDisplay[title as IssueStatusEnum]}
               count={quotes.length}
               // isdragging={snapshot.isDragging}
               // {...provided.dragHandleProps}
