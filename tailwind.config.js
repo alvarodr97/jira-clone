@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -25,7 +25,7 @@ module.exports = {
         activeLinkText: '#0052cc',
         textMedium: '#5E6C84',
         textDark: '#42526E',
-
+        
         borderLightest: '#dfe1e6',
       },
       fontSize: {
