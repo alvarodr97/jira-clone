@@ -1,15 +1,15 @@
 import React from "react";
+import { DraggableProvided } from "react-beautiful-dnd";
+import useBoundStore from "@/store/store";
 import styled, { CSSProperties } from "@xstyled/styled-components";
 import { borderRadius, grid } from "./constants";
-import { DraggableProvided } from "react-beautiful-dnd";
 import { IssueI, IssuePriorityColors, IssuePriorityEnum } from "@/types/issue";
 import { IconSVG } from "@/components/icon-svg";
-import useBoundStore from "@/store/store";
 
 const getBackgroundColor = (
-  isdragging: boolean,
-  isgroupedover: boolean,
-  authorColors: IssuePriorityEnum
+  authorColors: IssuePriorityEnum,
+  isdragging?: string,
+  isgroupedover?: string | null
 ) => {
   if (isdragging) {
     return lightenColor(IssuePriorityColors[authorColors], 0.8);
@@ -22,7 +22,7 @@ const getBackgroundColor = (
   return "#FFFFFF";
 };
 
-const getBorderColor = (isdragging: boolean, authorColors: IssuePriorityEnum) =>
+const getBorderColor = (authorColors: IssuePriorityEnum, isdragging?: string) =>
   isdragging ? IssuePriorityColors[authorColors] : "transparent";
 
 // Hex color to RGB
@@ -51,15 +51,15 @@ const lightenColor = (hex: string, amount: number) => {
 const imageSize = 30;
 
 const Container = styled.a<{
-  isdragging: boolean;
-  isgroupedover: boolean;
+  isdragging?: string;
+  isgroupedover?: string | null;
   colors: IssuePriorityEnum;
 }>`
   border-radius: ${borderRadius}px;
   border: 2px solid transparent;
-  border-color: ${(props) => getBorderColor(props.isdragging, props.colors)};
+  border-color: ${(props) => getBorderColor(props.colors, props.isdragging)};
   background-color: ${(props) =>
-    getBackgroundColor(props.isdragging, props.isgroupedover, props.colors)};
+    getBackgroundColor(props.colors, props.isdragging, props.isgroupedover)};
   box-shadow: ${({ isdragging }) =>
     isdragging ? `2px 2px 1px #A5ADBA` : "none"};
   box-sizing: border-box;
@@ -126,8 +126,8 @@ function getStyle(provided: DraggableProvided, style?: CSSProperties) {
 
 interface QuoteItemProps {
   issue: IssueI;
-  isdragging: boolean;
-  isgroupedover?: boolean;
+  isdragging?: string;
+  isgroupedover?: string | null;
   provided: DraggableProvided;
   style?: CSSProperties;
   index?: number;
@@ -139,8 +139,8 @@ function QuoteItem(props: QuoteItemProps) {
 
   return (
     <Container
-      isdragging={isdragging}
-      isgroupedover={isgroupedover ?? false}
+      isdragging={isdragging ?? undefined}
+      isgroupedover={isgroupedover ?? undefined}
       colors={issue.priority}
       ref={provided.innerRef}
       {...provided.draggableProps}

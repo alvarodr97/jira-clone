@@ -2,15 +2,14 @@ import { useState } from "react";
 import styled from "@xstyled/styled-components";
 import PropTypes from "prop-types";
 import Column from "./Column";
-import reorder, { reorderQuoteMap } from "../reorder";
+import { reorderQuoteMap } from "../reorder";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { IssueI, IssueStatusEnum } from "@/types/issue";
 
 const Container = styled.div`
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
-  /* gap: 16px; */
+  grid-template-columns: repeat(4, 1fr);
 `;
 
 export interface BoardProps {
@@ -27,18 +26,10 @@ const Board = ({
   withScrollableColumns,
 }: BoardProps) => {
   const [columns, setColumns] = useState(initial);
-
-  const [ordered, setOrdered] = useState(Object.keys(initial));
+  const ordered = Object.keys(initial);
 
   const onDragEnd = (result: DropResult) => {
     if (result.combine) {
-      if (result.type === "COLUMN") {
-        const shallow = [...ordered];
-        shallow.splice(result.source.index, 1);
-        setOrdered(shallow);
-        return;
-      }
-
       const column = columns[result.source.droppableId as IssueStatusEnum];
       const withQuoteRemoved = [...column];
 
@@ -68,21 +59,11 @@ const Board = ({
       return;
     }
 
-    // reordering column
-    if (result.type === "COLUMN") {
-      const reorderedorder = reorder(ordered, source.index, destination.index);
-
-      setOrdered(reorderedorder);
-
-      return;
-    }
-
     const data = reorderQuoteMap({
       quoteMap: columns,
       source,
       destination,
     });
-
     setColumns(data.quoteMap);
   };
 

@@ -13,41 +13,39 @@ import Title from "@/features/board/dnd/styles/title";
 import { IssueI } from "@/types/issue";
 
 export const getBackgroundColor = (
-  isdraggingOver: boolean,
-  isdraggingfrom: boolean
+  isdraggingover: "isdraggingoverTrue" | "isdraggingoverFalse",
+  isdraggingfrom: "isdraggingfromTrue" | "isdraggingfromFalse"
 ) => {
-  if (isdraggingOver) {
+  if (isdraggingover === "isdraggingoverTrue") {
     return "#FFEBE6";
   }
-  if (isdraggingfrom) {
+  if (isdraggingfrom === "isdraggingfromTrue") {
     return "#E6FCFF";
   }
   return "#EBECF0";
 };
 
 const Wrapper = styled.div<{
-  isDraggingOver: boolean;
-  isDraggingfrom: boolean;
-  isDropDisabled: boolean;
+  isdraggingover: "isdraggingoverTrue" | "isdraggingoverFalse";
+  isdraggingfrom: "isdraggingfromTrue" | "isdraggingfromFalse";
+  isdropdisabled: "isDropDisabledTrue" | "isDropDisabledFalse";
 }>`
   background-color: ${(props) =>
-    getBackgroundColor(props.isDraggingOver, props.isDraggingfrom)};
+    getBackgroundColor(props.isdraggingover, props.isdraggingfrom)};
   display: flex;
   flex-direction: column;
-  opacity: ${({ isDropDisabled }) => (isDropDisabled ? 0.5 : "inherit")};
+  opacity: ${({ isdropdisabled }) =>
+    isdropdisabled === "isDropDisabledTrue" ? 0.5 : "inherit"};
   padding: ${grid}px;
   border: ${grid}px;
   padding-bottom: 0;
   transition: background-color 0.2s ease, opacity 0.1s ease;
   user-select: none;
-  /* width: 250px; */
 `;
-
-const scrollContainerHeight = 250;
 
 const DropZone = styled.div`
   /* stop the list collapsing when empty */
-  min-height: ${scrollContainerHeight}px;
+  min-height: 250px;
   /*
     not relying on the items for a margin-bottom
     as it will collapse when the list is empty
@@ -58,21 +56,18 @@ const DropZone = styled.div`
 const ScrollContainer = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
-  /* max-height: ${scrollContainerHeight}px; */
 `;
 
 /* stylelint-disable block-no-empty */
 const Container = styled.div``;
 
 interface InnerQuoteListProps {
-  // quotes: Quote[];
   quotes: IssueI[];
 }
 
 const InnerQuoteList = React.memo(function InnerQuoteList(
   props: InnerQuoteListProps
 ) {
-  // Array de quotes
   return props.quotes.map((quote, index) => (
     <Draggable key={quote.id} draggableId={quote.id} index={index}>
       {(dragProvided, dragSnapshot) => (
@@ -80,8 +75,8 @@ const InnerQuoteList = React.memo(function InnerQuoteList(
           key={quote.id}
           index={index}
           issue={quote}
-          isdragging={dragSnapshot.isDragging}
-          isgroupedover={Boolean(dragSnapshot.combineTargetFor)}
+          isdragging={dragSnapshot.isDragging ? "isdraggingTrue" : undefined}
+          isgroupedover={dragSnapshot.combineTargetFor}
           provided={dragProvided}
         />
       )}
@@ -114,7 +109,7 @@ interface QuoteListProps {
   ignoreContainerClipping?: boolean;
   internalScroll?: boolean;
   scrollContainerStyle?: CSSProperties;
-  isDropDisabled?: boolean;
+  isdropdisabled?: boolean;
   isCombineEnabled?: boolean;
   listId?: string;
   listType?: string;
@@ -129,7 +124,7 @@ export default function QuoteList(props: QuoteListProps) {
     ignoreContainerClipping,
     internalScroll,
     scrollContainerStyle,
-    isDropDisabled,
+    isdropdisabled,
     isCombineEnabled,
     listId = "LIST",
     listType,
@@ -144,7 +139,7 @@ export default function QuoteList(props: QuoteListProps) {
       droppableId={listId}
       type={listType}
       ignoreContainerClipping={ignoreContainerClipping}
-      isDropDisabled={isDropDisabled}
+      isDropDisabled={isdropdisabled}
       isCombineEnabled={isCombineEnabled}
       renderClone={
         useClone
@@ -156,7 +151,7 @@ export default function QuoteList(props: QuoteListProps) {
               <QuoteItem
                 issue={quotes[descriptor.source.index]}
                 provided={provided}
-                isdragging={snapshot.isDragging}
+                isdragging={snapshot.isDragging ? "isdraggingTrue" : undefined}
               />
             )
           : undefined
@@ -165,9 +160,19 @@ export default function QuoteList(props: QuoteListProps) {
       {(dropProvided, dropSnapshot) => (
         <Wrapper
           style={style}
-          isDraggingOver={dropSnapshot.isDraggingOver}
-          isDropDisabled={isDropDisabled ?? false}
-          isDraggingfrom={Boolean(dropSnapshot.draggingFromThisWith)}
+          isdraggingover={
+            dropSnapshot.isDraggingOver
+              ? "isdraggingoverTrue"
+              : "isdraggingoverFalse"
+          }
+          isdropdisabled={
+            isdropdisabled ? "isDropDisabledTrue" : "isDropDisabledFalse"
+          }
+          isdraggingfrom={
+            dropSnapshot.draggingFromThisWith
+              ? "isdraggingfromTrue"
+              : "isdraggingfromFalse"
+          }
           {...dropProvided.droppableProps}
         >
           {internalScroll ? (

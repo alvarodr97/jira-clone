@@ -1,5 +1,7 @@
-// a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
+import { DraggableLocation } from "react-beautiful-dnd";
+import { IssueI, IssueStatusEnum } from "@/types/issue";
+
+const reorder = (list: IssueI[], startIndex: number, endIndex: number) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -7,11 +9,23 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-export default reorder;
+type QuoteMap = {
+  [key in IssueStatusEnum]: Array<IssueI>;
+};
 
-export const reorderQuoteMap = ({ quoteMap, source, destination }) => {
-  const current = [...quoteMap[source.droppableId]];
-  const next = [...quoteMap[destination.droppableId]];
+interface reorderQuoteMapProps {
+  quoteMap: QuoteMap;
+  source: DraggableLocation;
+  destination: DraggableLocation;
+}
+
+export const reorderQuoteMap = ({
+  quoteMap,
+  source,
+  destination,
+}: reorderQuoteMapProps) => {
+  const current = [...quoteMap[source.droppableId as IssueStatusEnum]];
+  const next = [...quoteMap[destination.droppableId as IssueStatusEnum]];
   const target = current[source.index];
 
   // moving to same list
@@ -19,14 +33,12 @@ export const reorderQuoteMap = ({ quoteMap, source, destination }) => {
     const reordered = reorder(current, source.index, destination.index);
     const result = {
       ...quoteMap,
-      [source.droppableId]: reordered
+      [source.droppableId]: reordered,
     };
     return {
-      quoteMap: result
+      quoteMap: result,
     };
   }
-
-  // moving to different list
 
   // remove from original
   current.splice(source.index, 1);
@@ -36,32 +48,10 @@ export const reorderQuoteMap = ({ quoteMap, source, destination }) => {
   const result = {
     ...quoteMap,
     [source.droppableId]: current,
-    [destination.droppableId]: next
+    [destination.droppableId]: next,
   };
 
   return {
-    quoteMap: result
+    quoteMap: result,
   };
 };
-
-export function moveBetween({ list1, list2, source, destination }) {
-  const newFirst = Array.from(list1.values);
-  const newSecond = Array.from(list2.values);
-
-  const moveFrom = source.droppableId === list1.id ? newFirst : newSecond;
-  const moveTo = moveFrom === newFirst ? newSecond : newFirst;
-
-  const [moved] = moveFrom.splice(source.index, 1);
-  moveTo.splice(destination.index, 0, moved);
-
-  return {
-    list1: {
-      ...list1,
-      values: newFirst
-    },
-    list2: {
-      ...list2,
-      values: newSecond
-    }
-  };
-}

@@ -63,7 +63,7 @@
         "status": "InProgress",
         "createdAt": "2020-10-26T15:13:08.070Z",
         "updatedAt": "2020-10-26T15:13:10.418Z",
-        "listPosition": 2
+        "listPosition": 1
       },
       {
         "type": "Story",
@@ -89,7 +89,7 @@
         "status": "Done",
         "createdAt": "2020-12-19T03:00:00.000Z",
         "updatedAt": "2020-12-19T03:00:00.000Z",
-        "listPosition": 1
+        "listPosition": 2
       },
       {
         "type": "Story",
@@ -102,7 +102,7 @@
         "status": "InProgress",
         "createdAt": "2020-09-15T23:41:37.278Z",
         "updatedAt": "2020-09-15T23:41:37.278Z",
-        "listPosition": 1
+        "listPosition": 2
       },
       {
         "id": "9013",
@@ -111,7 +111,7 @@
         "type": "Task",
         "status": "Done",
         "priority": "Highest",
-        "listPosition": 1,
+        "listPosition": 3,
         "createdAt": "2020-06-12T14:40:01.262Z",
         "updatedAt": "2020-06-12T14:40:01.262Z",
         "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
@@ -124,7 +124,7 @@
         "type": "Task",
         "status": "Done",
         "priority": "Medium",
-        "listPosition": 2,
+        "listPosition": 4,
         "createdAt": "2020-06-12T14:40:01.262Z",
         "updatedAt": "2020-06-12T14:40:01.262Z",
         "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
@@ -150,7 +150,7 @@
         "type": "Story",
         "status": "InProgress",
         "priority": "Medium",
-        "listPosition": 1,
+        "listPosition": 4,
         "createdAt": "2020-06-12T14:40:01.262Z",
         "updatedAt": "2020-06-12T14:48:00.807Z",
         "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
@@ -176,7 +176,7 @@
         "type": "Story",
         "status": "Done",
         "priority": "High",
-        "listPosition": 1,
+        "listPosition": 5,
         "createdAt": "2020-06-12T14:40:01.304Z",
         "updatedAt": "2020-06-12T14:52:02.173Z",
         "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
@@ -189,7 +189,7 @@
         "type": "Bug",
         "status": "Done",
         "priority": "High",
-        "listPosition": 1,
+        "listPosition": 6,
         "createdAt": "2020-06-12T14:40:01.304Z",
         "updatedAt": "2020-06-12T14:52:02.173Z",
         "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
@@ -228,7 +228,7 @@
         "type": "Bug",
         "status": "Done",
         "priority": "High",
-        "listPosition": 1,
+        "listPosition": 7,
         "createdAt": "2020-06-12T14:40:00.000Z",
         "updatedAt": "2020-06-12T14:51:00.000Z",
         "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
