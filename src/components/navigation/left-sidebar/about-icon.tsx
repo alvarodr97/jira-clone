@@ -1,3 +1,4 @@
+import useBoundStore from "@/store/store";
 import {
   Popover,
   PopoverContent,
@@ -7,6 +8,8 @@ import { TooltipNavigation } from "../tooltip-navigation";
 import { HelpCircle } from "lucide-react";
 
 export const AboutIcon = () => {
+  const description = useBoundStore((state) => state.description);
+
   return (
     <Popover>
       <TooltipNavigation tooltipText="About">
@@ -16,10 +19,7 @@ export const AboutIcon = () => {
       </TooltipNavigation>
       <PopoverContent className="mb-4" side="right">
         <div>
-          <p className="text-sm">
-            This is a simplified Jira clone built with React, Zustand and
-            shadcn.
-          </p>
+          <p className="text-sm">{description || "There is no description!"}</p>
         </div>
       </PopoverContent>
     </Popover>

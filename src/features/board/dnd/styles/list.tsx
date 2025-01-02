@@ -45,7 +45,7 @@ const Wrapper = styled.div<{
 
 const DropZone = styled.div`
   /* stop the list collapsing when empty */
-  min-height: 250px;
+  min-height: 50px;
   /*
     not relying on the items for a margin-bottom
     as it will collapse when the list is empty
