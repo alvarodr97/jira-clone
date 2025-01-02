@@ -5,6 +5,7 @@ import styled, { CSSProperties } from "@xstyled/styled-components";
 import { borderRadius, grid } from "./constants";
 import { IssueI, IssuePriorityColors, IssuePriorityEnum } from "@/types/issue";
 import { IconSVG } from "@/components/icon-svg";
+import { ISSUES_PRIORITY } from "@/constants/issues-constants";
 
 const getBackgroundColor = (
   authorColors: IssuePriorityEnum,
@@ -116,14 +117,6 @@ function getStyle(provided: DraggableProvided, style?: CSSProperties) {
   };
 }
 
-// Previously this extended React.Component
-// That was a good thing, because using React.PureComponent can hide
-// issues with the selectors. However, moving it over does can considerable
-// performance improvements when reordering big lists (400ms => 200ms)
-// Need to be super sure we are not relying on PureComponent here for
-// things we should be doing in the selector as we do not know if consumers
-// will be using PureComponent
-
 interface QuoteItemProps {
   issue: IssueI;
   isdragging?: string;
@@ -136,6 +129,10 @@ interface QuoteItemProps {
 function QuoteItem(props: QuoteItemProps) {
   const getUserUrl = useBoundStore((state) => state.getUserUrl);
   const { issue, isdragging, isgroupedover, provided, style, index } = props;
+
+  const priorityItem = ISSUES_PRIORITY.find(
+    (item) => item.priority === issue.priority
+  );
 
   return (
     <Container
@@ -160,12 +157,10 @@ function QuoteItem(props: QuoteItemProps) {
               {issue.type} - {issue.id}
             </span>
           </div>
-          {/* {index} */}
           <div className="flex flex-row gap-x-1">
             <IconSVG icon={issue.type} classname="w-6 h-6" />
-            {/* // TODO: change arrow icons */}
             <IconSVG
-              icon={"Arrow-Down"}
+              icon={priorityItem ? priorityItem.icon : "Arrow-Down"}
               classname="w-6 h-6"
               color={IssuePriorityColors[issue.priority]}
             />
