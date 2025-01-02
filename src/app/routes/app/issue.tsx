@@ -35,7 +35,9 @@ export const IssueRoute = () => {
 
   return (
     <div className="flex flex-col w-full h-full py-8 pl-8 pr-6">
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <nav aria-label="Breadcrumbs">
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
+      </nav>
       <header className="flex justify-between mt-3 mb-2">
         <IssueType id={id} issueType={type} />
         <div className="flex flex-row space-x-4 text-sm">

@@ -9,7 +9,9 @@ export const BoardRoute = () => {
 
   return (
     <div className="flex flex-col w-full h-screen py-8 pl-8 pr-6">
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
+      <nav aria-label="Breadcrumbs">
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
+      </nav>
       <header className="flex justify-between mt-3">
         {/* Title */}
         <div className="text-2xl font-medium">Kanban board</div>
