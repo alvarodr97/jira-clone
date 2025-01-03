@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  Droppable,
-  Draggable,
-  DroppableProvided,
-  DraggableProvided,
-  DraggableStateSnapshot,
-} from "react-beautiful-dnd";
+import { Droppable, Draggable, DroppableProvided } from "react-beautiful-dnd";
 import styled, { CSSProperties } from "@xstyled/styled-components";
 import QuoteItem from "./item";
-import { grid } from "./constants";
 import Title from "@/features/board/dnd/styles/title";
+import { grid } from "./constants";
 import { IssueI } from "@/types/issue";
 
 export const getBackgroundColor = (
@@ -76,7 +70,6 @@ const InnerQuoteList = React.memo(function InnerQuoteList(
           index={index}
           issue={quote}
           isdragging={dragSnapshot.isDragging ? "isdraggingTrue" : undefined}
-          isgroupedover={dragSnapshot.combineTargetFor}
           provided={dragProvided}
         />
       )}
@@ -110,13 +103,11 @@ interface QuoteListProps {
   internalScroll?: boolean;
   scrollContainerStyle?: CSSProperties;
   isdropdisabled?: boolean;
-  isCombineEnabled?: boolean;
   listId?: string;
   listType?: string;
   style?: CSSProperties | undefined;
   quotes: IssueI[];
   title?: string;
-  useClone?: boolean;
 }
 
 export default function QuoteList(props: QuoteListProps) {
@@ -125,13 +116,11 @@ export default function QuoteList(props: QuoteListProps) {
     internalScroll,
     scrollContainerStyle,
     isdropdisabled,
-    isCombineEnabled,
     listId = "LIST",
     listType,
     style,
     quotes,
     title,
-    useClone,
   } = props;
 
   return (
@@ -140,22 +129,6 @@ export default function QuoteList(props: QuoteListProps) {
       type={listType}
       ignoreContainerClipping={ignoreContainerClipping}
       isDropDisabled={isdropdisabled}
-      isCombineEnabled={isCombineEnabled}
-      renderClone={
-        useClone
-          ? (
-              provided: DraggableProvided,
-              snapshot: DraggableStateSnapshot,
-              descriptor: any
-            ) => (
-              <QuoteItem
-                issue={quotes[descriptor.source.index]}
-                provided={provided}
-                isdragging={snapshot.isDragging ? "isdraggingTrue" : undefined}
-              />
-            )
-          : undefined
-      }
     >
       {(dropProvided, dropSnapshot) => (
         <Wrapper

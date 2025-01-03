@@ -1,9 +1,8 @@
 import { useState } from "react";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import styled from "@xstyled/styled-components";
-import PropTypes from "prop-types";
 import Column from "./Column";
 import { reorderQuoteMap } from "../reorder";
-import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { IssueI, IssueStatusEnum } from "@/types/issue";
 
 const Container = styled.div`
@@ -13,23 +12,15 @@ const Container = styled.div`
 `;
 
 export interface BoardProps {
-  isCombineEnabled: boolean;
   initial: Record<IssueStatusEnum, IssueI[]>;
-  useClone?: boolean;
   withScrollableColumns: boolean;
 }
 
-const Board = ({
-  isCombineEnabled,
-  initial,
-  useClone,
-  withScrollableColumns,
-}: BoardProps) => {
+const Board = ({ initial, withScrollableColumns }: BoardProps) => {
   const [columns, setColumns] = useState(initial);
   const ordered = Object.keys(initial);
 
   const onDragEnd = (result: DropResult) => {
-
     // dropped nowhere
     if (!result.destination) {
       return;
@@ -57,12 +48,7 @@ const Board = ({
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable
-          droppableId="board"
-          type="COLUMN"
-          direction="horizontal"
-          isCombineEnabled={isCombineEnabled}
-        >
+        <Droppable droppableId="board" type="COLUMN" direction="horizontal">
           {(provided) => (
             <Container ref={provided.innerRef} {...provided.droppableProps}>
               {ordered.map((key, index) => (
@@ -72,8 +58,6 @@ const Board = ({
                   title={key}
                   quotes={columns[key as IssueStatusEnum]}
                   isScrollable={withScrollableColumns}
-                  isCombineEnabled={isCombineEnabled}
-                  useClone={useClone ?? false}
                 />
               ))}
               {provided.placeholder}
@@ -83,14 +67,6 @@ const Board = ({
       </DragDropContext>
     </>
   );
-};
-
-Board.defaultProps = {
-  isCombineEnabled: false,
-};
-
-Board.propTypes = {
-  isCombineEnabled: PropTypes.bool,
 };
 
 export default Board;

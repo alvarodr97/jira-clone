@@ -1,8 +1,8 @@
-import styled from "@xstyled/styled-components";
-import { grid, borderRadius } from "../styles/constants";
 import { Draggable } from "react-beautiful-dnd";
+import styled from "@xstyled/styled-components";
 import QuoteList from "../styles/list";
 import Title from "../styles/title";
+import { grid, borderRadius } from "../styles/constants";
 import { IssueI, IssueStatusDisplay, IssueStatusEnum } from "@/types/issue";
 
 const Container = styled.div`
@@ -26,8 +26,6 @@ interface ColumnProps {
   title: string;
   quotes: IssueI[];
   isScrollable: boolean;
-  isCombineEnabled: boolean;
-  useClone: boolean;
 }
 
 const Column = (props: ColumnProps) => {
@@ -42,8 +40,6 @@ const Column = (props: ColumnProps) => {
             <Title
               title={IssueStatusDisplay[title as IssueStatusEnum]}
               count={quotes.length}
-              // isdragging={snapshot.isDragging}
-              // {...provided.dragHandleProps}
               aria-label={`${title} quote list`}
             />
           </Header>
@@ -55,8 +51,6 @@ const Column = (props: ColumnProps) => {
             }}
             quotes={quotes}
             internalScroll={props.isScrollable}
-            isCombineEnabled={Boolean(props.isCombineEnabled)}
-            useClone={Boolean(props.useClone)}
           />
         </Container>
       )}
