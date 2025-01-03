@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { DraggableProvided } from "react-beautiful-dnd";
 import useBoundStore from "@/store/store";
 import styled, { CSSProperties } from "@xstyled/styled-components";
@@ -8,23 +9,18 @@ import { IconSVG } from "@/components/icon-svg";
 import { ISSUES_PRIORITY } from "@/constants/issues-constants";
 
 const getBackgroundColor = (
-  authorColors: IssuePriorityEnum,
-  isdragging?: string,
-  isgroupedover?: string | null
+  issueColor: IssuePriorityEnum,
+  isdragging?: string
 ) => {
   if (isdragging) {
-    return lightenColor(IssuePriorityColors[authorColors], 0.8);
-  }
-
-  if (isgroupedover) {
-    return "#EBECF0";
+    return lightenColor(IssuePriorityColors[issueColor], 0.8);
   }
 
   return "#FFFFFF";
 };
 
-const getBorderColor = (authorColors: IssuePriorityEnum, isdragging?: string) =>
-  isdragging ? IssuePriorityColors[authorColors] : "transparent";
+const getBorderColor = (issueColor: IssuePriorityEnum, isdragging?: string) =>
+  isdragging ? IssuePriorityColors[issueColor] : "transparent";
 
 // Hex color to RGB
 const hexToRgb = (hex: string) => {
@@ -53,14 +49,13 @@ const imageSize = 30;
 
 const Container = styled.a<{
   isdragging?: string;
-  isgroupedover?: string | null;
   colors: IssuePriorityEnum;
 }>`
   border-radius: ${borderRadius}px;
   border: 2px solid transparent;
   border-color: ${(props) => getBorderColor(props.colors, props.isdragging)};
   background-color: ${(props) =>
-    getBackgroundColor(props.colors, props.isdragging, props.isgroupedover)};
+    getBackgroundColor(props.colors, props.isdragging)};
   box-shadow: ${({ isdragging }) =>
     isdragging ? `2px 2px 1px #A5ADBA` : "none"};
   box-sizing: border-box;
@@ -120,24 +115,29 @@ function getStyle(provided: DraggableProvided, style?: CSSProperties) {
 interface QuoteItemProps {
   issue: IssueI;
   isdragging?: string;
-  isgroupedover?: string | null;
   provided: DraggableProvided;
   style?: CSSProperties;
   index?: number;
 }
 
 function QuoteItem(props: QuoteItemProps) {
+  const navigate = useNavigate();
+
   const getUserUrl = useBoundStore((state) => state.getUserUrl);
-  const { issue, isdragging, isgroupedover, provided, style, index } = props;
+  const { issue, isdragging, provided, style, index } = props;
 
   const priorityItem = ISSUES_PRIORITY.find(
     (item) => item.priority === issue.priority
   );
 
+  const handleClick = () => {
+    navigate(`/project/issue/${issue.id}`);
+  };
+
   return (
     <Container
+      onClick={handleClick}
       isdragging={isdragging ?? undefined}
-      isgroupedover={isgroupedover ?? undefined}
       colors={issue.priority}
       ref={provided.innerRef}
       {...provided.draggableProps}
