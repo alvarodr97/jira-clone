@@ -48,7 +48,7 @@ const Progress = () => {
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
   return (
-    <div className="flex flex-col min-h-screen w-screen relative">
+    <div className="flex flex-col min-h-screen relative">
       <aside className="fixed flex flex-row inset-y-0 left-0 z-10 border-r border-r-sidebarHr">
         <LeftSidebar />
         <Sidebar />
