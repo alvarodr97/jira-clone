@@ -29,19 +29,6 @@ const Board = ({
   const ordered = Object.keys(initial);
 
   const onDragEnd = (result: DropResult) => {
-    if (result.combine) {
-      const column = columns[result.source.droppableId as IssueStatusEnum];
-      const withQuoteRemoved = [...column];
-
-      withQuoteRemoved.splice(result.source.index, 1);
-
-      const orderedColumns = {
-        ...columns,
-        [result.source.droppableId]: withQuoteRemoved,
-      };
-      setColumns(orderedColumns);
-      return;
-    }
 
     // dropped nowhere
     if (!result.destination) {
