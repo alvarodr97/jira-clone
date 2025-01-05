@@ -41,6 +41,7 @@ export const IssueStatus = ({ issueStatus, id }: { issueStatus: string, id: stri
             selectedStatus
           )}`}
           isArrow={false}
+          aria-label="Status"
         >
           <SelectValue
             placeholder={selectedStatus}

@@ -19,6 +19,7 @@ export const IssueTitle = ({ title, id }: { title: string; id: string }) => {
         setTerm(e.target.value)
       }
       onBlur={onBlur}
+      aria-label="Title"
     />
   );
 };

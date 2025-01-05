@@ -34,6 +34,7 @@ export const IssueReporter = ({
         <SelectTrigger
           className={`w-fit focus-visible:ring-0 border-none bg-[#f4f5f7] hover:bg-[#eceef0]`}
           isArrow={false}
+          aria-label="Reporter"
         >
           <SelectValue
             placeholder={selectedReporter}
@@ -51,7 +52,7 @@ export const IssueReporter = ({
                 <div className="flex flex-row gap-x-2">
                   <img
                     src={option.avatarUrl}
-                    alt={option.name}
+                    alt="Reporter image"
                     className="rounded-full w-[20px] h-[20px]"
                   />
                   {option.name}

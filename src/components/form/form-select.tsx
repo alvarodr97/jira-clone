@@ -37,7 +37,7 @@ export function FormSelect<T extends FieldValues>({
           <FormLabel>{label}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
-              <SelectTrigger>
+              <SelectTrigger aria-label={label}>
                 <SelectValue />
               </SelectTrigger>
             </FormControl>

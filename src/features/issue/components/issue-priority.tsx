@@ -36,6 +36,7 @@ export const IssuePriority = ({
         <SelectTrigger
           className={`w-fit focus-visible:ring-0 border-none bg-[#f4f5f7] hover:bg-[#eceef0]`}
           isArrow={false}
+          aria-label="Priority"
         >
           <SelectValue
             placeholder={selectedPriority}
