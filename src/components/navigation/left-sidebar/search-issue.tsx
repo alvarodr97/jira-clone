@@ -10,8 +10,13 @@ export const SearchIssue = () => {
   return (
     <Sheet open={isSearchBoxOpen} onOpenChange={setIsSearchBoxOpen}>
       <TooltipNavigation tooltipText="Search issue">
-        <SheetTrigger asChild>
-          <Search className="custom-sidebar-button" />
+        <SheetTrigger asChild aria-label="Open search issue panel">
+          <button
+            className="custom-sidebar-button"
+            aria-label="Open search issue panel"
+          >
+            <Search aria-hidden="true" focusable="false" />
+          </button>
         </SheetTrigger>
       </TooltipNavigation>
 

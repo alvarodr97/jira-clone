@@ -14,7 +14,9 @@ export const AboutIcon = () => {
     <Popover>
       <TooltipNavigation tooltipText="About">
         <PopoverTrigger asChild>
-          <HelpCircle className="custom-sidebar-button" />
+          <button className="custom-sidebar-button" aria-label="About">
+            <HelpCircle aria-hidden="true" focusable="false" />
+          </button>
         </PopoverTrigger>
       </TooltipNavigation>
       <PopoverContent className="mb-4" side="right">

@@ -11,7 +11,9 @@ export const AddIssue = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <TooltipNavigation tooltipText="Create issue">
         <DialogTrigger asChild>
-          <Plus className="custom-sidebar-button" />
+          <button className="custom-sidebar-button" aria-label="Create issue">
+            <Plus aria-hidden="true" focusable="false" />
+          </button>
         </DialogTrigger>
       </TooltipNavigation>
       <DialogContent className="max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
