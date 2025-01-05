@@ -7,10 +7,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet"
+        type="text/css"
+      />
+    </noscript>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Jira Clone built with React">
+    <meta name="description" content="Jira Clone built with React" />
     <title>Jira Clone</title>
   </head>
   <body>
@@ -18,7 +28,6 @@
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- Import SVG Symbols -->
-    <!-- TODO: Optimize this -->
     <svg
       width="0"
       height="0"
