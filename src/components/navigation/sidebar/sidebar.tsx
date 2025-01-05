@@ -1,4 +1,4 @@
-import react from "@/assets/react.png";
+import react from "@/assets/react.avif";
 import { LINKS } from "@/constants/links";
 import { SidebarLink } from "./sidebar-link";
 import { SidebarTitle } from "./sidebar-title";
@@ -8,7 +8,7 @@ export const Sidebar = () => {
     <div className="flex flex-col w-60 h-screen p-3 bg-sidebarGrey">
       {/* React icon container */}
       <div className="flex flex-row gap-x-2 py-5">
-        <img src={react} alt="React" className="w-12 h-12" />
+        <img src={react} alt="React" className="h-[3rem] w-[3.4375rem]" />
         <SidebarTitle />
       </div>
 
