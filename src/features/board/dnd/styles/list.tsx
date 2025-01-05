@@ -16,7 +16,7 @@ export const getBackgroundColor = (
   if (isdraggingfrom === "isdraggingfromTrue") {
     return "#E6FCFF";
   }
-  return "#EBECF0";
+  return "#EEEEF2";
 };
 
 const Wrapper = styled.div<{

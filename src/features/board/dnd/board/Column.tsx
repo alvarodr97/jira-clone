@@ -17,7 +17,7 @@ const Header = styled.div`
   justify-content: center;
   border-top-left-radius: ${borderRadius}px;
   border-top-right-radius: ${borderRadius}px;
-  background-color: #ebecf0;
+  background-color: #EEEEF2;
 `;
 
 interface ColumnProps {
