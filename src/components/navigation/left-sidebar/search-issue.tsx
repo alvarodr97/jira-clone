@@ -21,6 +21,7 @@ export const SearchIssue = () => {
           <button
             className="custom-sidebar-button"
             aria-label="Open search issue panel"
+            data-testid="search-issue-button"
           >
             <Search aria-hidden="true" focusable="false" />
           </button>
