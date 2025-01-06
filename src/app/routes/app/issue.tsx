@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useBoundStore from "@/store/store";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { Button } from "@/components/ui/button";
 import { IconSVG } from "@/components/icon-svg";
 import { IssueType } from "@/features/issue/components/issue-type";
 import { IssueTitle } from "@/features/issue/components/issue-title";
@@ -8,6 +9,7 @@ import { IssueDescription } from "@/features/issue/components/issue-description"
 import { IssueStatus } from "@/features/issue/components/issue-status";
 import { IssueReporter } from "@/features/issue/components/issue-reporter";
 import { IssuePriority } from "@/features/issue/components/issue-priority";
+import { IssueDelete } from "@/features/issue/components/issue-delete";
 import { printDate } from "@/utils/helpers";
 
 export const IssueRoute = () => {
@@ -43,16 +45,14 @@ export const IssueRoute = () => {
         <div className="flex flex-row space-x-4 text-sm">
           <a
             target="_blank"
-            className="flex flex-row hover:bg-[#f4f5f7] p-1"
             href="https://github.com/alvarodr97/jira-clone/issues/new"
           >
-            <IconSVG icon="Feedback" classname="h-6 w-6 mr-2" />
-            Give Feedback
+            <Button variant="secondary" className="gap-x-1">
+              <IconSVG icon="Feedback" classname="h-6 w-6 mr-2" />
+              <span>Give Feedback</span>
+            </Button>
           </a>
-          <IconSVG
-            icon="Trash"
-            classname="h-6 w-6 cursor-pointer hover:bg-[#f4f5f7]"
-          />
+          <IssueDelete />
         </div>
       </header>
       <div className="grid grid-cols-3 space-x-5">

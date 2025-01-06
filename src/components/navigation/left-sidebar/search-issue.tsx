@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { TooltipNavigation } from "../tooltip-navigation";
 import { Search } from "lucide-react";
 import { SearchIssueComponent } from "@/features/search/components/search-issue-component";
@@ -20,7 +27,15 @@ export const SearchIssue = () => {
         </SheetTrigger>
       </TooltipNavigation>
 
-      <SheetContent side="left" style={{ maxWidth: "30rem" }}>
+      <SheetContent
+        side="left"
+        style={{ maxWidth: "30rem" }}
+        aria-describedby="Search issue"
+      >
+        <VisuallyHidden>
+          <SheetTitle>Search</SheetTitle>
+          <SheetDescription>Search issue</SheetDescription>
+        </VisuallyHidden>
         <SearchIssueComponent setIsSearchBoxOpen={setIsSearchBoxOpen} />
       </SheetContent>
     </Sheet>
