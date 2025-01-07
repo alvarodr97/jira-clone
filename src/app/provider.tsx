@@ -3,13 +3,19 @@ import { ErrorBoundary } from "react-error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
 import { MainErrorFallback } from "@/components/errors/main-error";
+import { queryConfig } from "@/lib/react-query";
 
 interface AppProviderProps {
   children: React.ReactNode;
 }
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  const queryClient = new QueryClient();
+  const [queryClient] = React.useState(
+    () =>
+      new QueryClient({
+        defaultOptions: queryConfig,
+      })
+  );
 
   return (
     <React.Suspense
