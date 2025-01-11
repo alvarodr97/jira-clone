@@ -1,9 +1,32 @@
-import useBoundStore from "@/store/store";
+import {
+  getIssuesQueryOptions,
+  useIssues,
+} from "@/features/issue/api/get-issues";
 import { ProjectLayout } from "@/components/layouts/project-layout";
 import { ReportGraph } from "@/features/reports/components/report-graph";
+import { QueryClient } from "@tanstack/react-query";
+
+export const reportsLoader = (queryClient: QueryClient) => async () => {
+  const query = getIssuesQueryOptions();
+
+  return (
+    queryClient.getQueryData(query.queryKey) ??
+    (await queryClient.fetchQuery(query))
+  );
+};
 
 export const ReportsRoute = () => {
-  const issues = useBoundStore((state) => state.issues);
+  const query = useIssues();
+
+  // TODO: Make it nicer
+
+  query.isLoading && <div>Loading reports...</div>;
+
+  if (query.isError || !query.data) {
+    return <div>Error: {query.error?.message}</div>;
+  }
+
+  const issues = query.data;
 
   return (
     <ProjectLayout pageTitle="Reports">

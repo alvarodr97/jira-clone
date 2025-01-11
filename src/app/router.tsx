@@ -1,4 +1,4 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import {
   createBrowserRouter,
@@ -8,8 +8,7 @@ import {
 import { AppRoot } from "./routes/app/root";
 import { IssueError } from "@/features/issue/components/issue-error";
 
-// export const createAppRouter = (queryClient: QueryClient) =>
-export const createAppRouter = () =>
+export const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
     {
       path: "/",
@@ -41,10 +40,10 @@ export const createAppRouter = () =>
             return { Component: ReportsRoute };
           },
 
-          // loader: async () => {
-          //   const { reportsLoader } = await import('./routes/app/reports');
-          //   return reportsLoader(queryClient)();
-          // },
+          loader: async () => {
+            const { reportsLoader } = await import("./routes/app/reports");
+            return reportsLoader(queryClient)();
+          },
         },
         {
           path: "settings",
@@ -52,11 +51,6 @@ export const createAppRouter = () =>
             const { SettingsRoute } = await import("./routes/app/settings");
             return { Component: SettingsRoute };
           },
-
-          // loader: async () => {
-          //   const { settingsLoader } = await import('./routes/app/settings');
-          //   return settingsLoader(queryClient)();
-          // },
         },
         {
           path: "issue/:projectId",
@@ -91,8 +85,7 @@ export const createAppRouter = () =>
 export const AppRouter = () => {
   const queryClient = useQueryClient();
 
-  // const router = useMemo(() => createAppRouter(queryClient), [queryClient]);
-  const router = useMemo(() => createAppRouter(), [queryClient]);
+  const router = useMemo(() => createAppRouter(queryClient), [queryClient]);
 
   return <RouterProvider router={router} />;
 };
