@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+import { useDeleteIssue } from "../api/delete-issue";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { IconSVG } from "@/components/icon-svg";
 import {
@@ -12,16 +15,26 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
 
-// TODO: Delete issue
+export const IssueDelete = ({ issueId }: { issueId: string }) => {
+  const navigate = useNavigate();
+  const { isPending, mutate } = useDeleteIssue({
+    mutationConfig: {
+      onSuccess: () => {
+        toast.success(`Issue #${issueId} deleted successfully`);
+        navigate("/project/board");
+      },
+    },
+  });
 
-export const IssueDelete = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild aria-label="Delete issue">
         <Button variant="secondary">
           <IconSVG
-            icon="Trash"
-            classname="h-6 w-6 cursor-pointer hover:bg-[#f4f5f7]"
+            icon={isPending ? "Spin" : "Trash"}
+            classname={`h-6 w-6 cursor-pointer hover:bg-[#f4f5f7] ${
+              isPending ? "animate-spin" : ""
+            }`}
           />
         </Button>
       </AlertDialogTrigger>
@@ -36,7 +49,9 @@ export const IssueDelete = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue (Not working)</AlertDialogAction>
+          <AlertDialogAction onClick={() => mutate({ issueId })}>
+            Continue
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

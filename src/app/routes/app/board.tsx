@@ -3,10 +3,39 @@ import useBoundStore from "@/store/store";
 import { BoardFilter } from "@/features/board/components/BoardFilter";
 import { BoardDnd } from "@/features/board/components/BoardDnd";
 import { Button } from "@/components/ui/button";
+import { QueryClient } from "@tanstack/react-query";
+import {
+  getIssuesQueryOptions,
+  useIssues,
+} from "@/features/issue/api/get-issues";
+
+export const boardLoader = (queryClient: QueryClient) => async () => {
+  const query = getIssuesQueryOptions();
+
+  return (
+    queryClient.getQueryData(query.queryKey) ??
+    (await queryClient.fetchQuery(query))
+  );
+};
 
 export const BoardRoute = () => {
   const projectName = useBoundStore((state) => state.projectName);
   const breadcrumbs: string[] = ["Projects", projectName, "Kanban Board"];
+
+  const query = useIssues();
+
+  // TODO:
+  {
+    (query.isLoading || query.isFetching) && <div>Loading reports...</div>;
+  }
+
+  if (query.isError) {
+    return <div>Error: {query.error?.message}</div>;
+  }
+
+  const issues = query.data;
+
+  if (!issues) return null;
 
   return (
     <div className="flex flex-col w-full h-screen py-8 pl-8 pr-6">
@@ -75,7 +104,7 @@ export const BoardRoute = () => {
 
       {/* Board drag and drop */}
       {/* TODO: Actualizar listPosition en la store. */}
-      <BoardDnd />
+      <BoardDnd issues={issues} />
     </div>
   );
 };

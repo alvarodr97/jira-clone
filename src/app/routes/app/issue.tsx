@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { LoaderFunctionArgs, useParams } from "react-router-dom";
 import useBoundStore from "@/store/store";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -11,15 +11,37 @@ import { IssueReporter } from "@/features/issue/components/issue-reporter";
 import { IssuePriority } from "@/features/issue/components/issue-priority";
 import { IssueDelete } from "@/features/issue/components/issue-delete";
 import { printDate } from "@/utils/helpers";
+import { getIssueQueryOptions, useIssue } from "@/features/issue/api/get-issue";
+import { QueryClient } from "@tanstack/react-query";
+
+export const issueLoader =
+  (queryClient: QueryClient) =>
+  async ({ params }: LoaderFunctionArgs) => {
+    const issueId = params.issueId as string;
+
+    const issueQuery = getIssueQueryOptions(issueId);
+
+    return (
+      queryClient.getQueryData(issueQuery.queryKey) ??
+      (await queryClient.fetchQuery(issueQuery))
+    );
+  };
 
 export const IssueRoute = () => {
-  const { projectId } = useParams();
+  const { issueId } = useParams();
 
-  // TODO: Redirect if there is no projectId
+  const query = useIssue({ issueId: issueId! });
 
   const projectName = useBoundStore((state) => state.projectName);
+  const breadcrumbs: string[] = ["Projects", projectName, "Issues", issueId!];
 
-  const breadcrumbs: string[] = ["Projects", projectName, "Issues", projectId!];
+  // TODO: Make it nicer
+
+  query.isLoading && <div>Loading reports...</div>;
+
+  if (query.isError || !query.data) {
+    return <div>Error: {query.error?.message}</div>;
+  }
 
   const {
     createdAt,
@@ -31,9 +53,7 @@ export const IssueRoute = () => {
     title,
     type,
     updatedAt,
-  } = useBoundStore((state) => state.filterById(projectId!));
-
-  // TODO: Error boundaries
+  } = query.data;
 
   return (
     <div className="flex flex-col w-full h-full py-8 pl-8 pr-6">
@@ -52,7 +72,7 @@ export const IssueRoute = () => {
               <span>Give Feedback</span>
             </Button>
           </a>
-          <IssueDelete />
+          <IssueDelete issueId={id} />
         </div>
       </header>
       <div className="grid grid-cols-3 space-x-5">

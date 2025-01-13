@@ -2,6 +2,7 @@ import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import {
   createBrowserRouter,
+  LoaderFunctionArgs,
   Navigate,
   RouterProvider,
 } from "react-router-dom";
@@ -28,10 +29,10 @@ export const createAppRouter = (queryClient: QueryClient) =>
             return { Component: BoardRoute };
           },
 
-          // loader: async () => {
-          //   const { boardLoader } = await import('./routes/app/board');
-          //   return boardLoader(queryClient);
-          // },
+          loader: async () => {
+            const { boardLoader } = await import("./routes/app/board");
+            return boardLoader(queryClient)();
+          },
         },
         {
           path: "reports",
@@ -53,19 +54,17 @@ export const createAppRouter = (queryClient: QueryClient) =>
           },
         },
         {
-          path: "issue/:projectId",
+          path: "issue/:issueId",
           errorElement: <IssueError />,
           lazy: async () => {
             const { IssueRoute } = await import("./routes/app/issue");
             return { Component: IssueRoute };
           },
 
-          // loader: async (args: LoaderFunctionArgs) => {
-          //   const { issueLoader } = await import(
-          //     './routes/app/issue'
-          //   );
-          //   return issueLoader(queryClient)(args);
-          // },
+          loader: async (args: LoaderFunctionArgs) => {
+            const { issueLoader } = await import("./routes/app/issue");
+            return issueLoader(queryClient)(args);
+          },
         },
         {
           path: "",

@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
+import { Location, useNavigation } from "react-router-dom";
 import { LeftSidebar } from "../navigation/left-sidebar/left-sidebar";
 import { Sidebar } from "../navigation/sidebar/sidebar";
-import { useNavigation } from "react-router-dom";
 
 interface AppLayoutProps {
   children: JSX.Element;
 }
 
-const Progress = () => {
-  const { state, location } = useNavigation();
+const Progress = ({
+  state,
+  location,
+}: {
+  state: "idle" | "loading" | "submitting";
+  location: Location<any> | undefined;
+}) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -47,6 +52,8 @@ const Progress = () => {
 };
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
+  const { state, location } = useNavigation();
+
   return (
     <div className="flex flex-col min-h-screen relative">
       <aside className="fixed flex flex-row inset-y-0 left-0 z-10 border-r border-r-sidebarHr">
@@ -55,7 +62,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
       </aside>
 
       <div className="flex flex-col pl-[19rem]">
-        <Progress />
+        <Progress state={state} location={location} />
         <main className="relative grid flex-1 items-start z-30">
           {children}
         </main>
