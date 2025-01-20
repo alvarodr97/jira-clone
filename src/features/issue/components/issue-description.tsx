@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import useBoundStore from "@/store/store";
+import { useUpdateIssue } from "../api/update-issue";
 import ReactQuill from "react-quill";
 import DOMPurify from "dompurify";
 import { quillConfiguration } from "@/config/editor";
@@ -18,12 +18,12 @@ export const IssueDescription = ({
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const quillRef = useRef<ReactQuill>(null);
-  const updateIssue = useBoundStore((state) => state.updateIssue);
+  const { mutate } = useUpdateIssue();
 
   const handleSave = async () => {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    updateIssue(id, { description: description });
+    mutate({ data: { description: description }, issueId: id });
     setIsLoading(false);
     setIsEditing(false);
   };

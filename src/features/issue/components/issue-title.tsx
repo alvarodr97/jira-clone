@@ -1,14 +1,19 @@
 import { useState } from "react";
+import { useUpdateIssue } from "../api/update-issue";
 import TextareaAutosize from "react-textarea-autosize";
-import useBoundStore from "@/store/store";
 
 export const IssueTitle = ({ title, id }: { title: string; id: string }) => {
-  const updateIssue = useBoundStore((state) => state.updateIssue);
+  const { mutate } = useUpdateIssue();
+
   const [term, setTerm] = useState(title);
 
   function onBlur() {
     if (term.trim() === title.trim()) return;
-    updateIssue(id, { title: term });
+    if (!term.trim()) {
+      setTerm(title);
+      return;
+    }
+    mutate({ data: { title: term }, issueId: id });
   }
 
   return (

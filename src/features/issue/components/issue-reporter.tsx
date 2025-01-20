@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useUpdateIssue } from "../api/update-issue";
 import useBoundStore from "@/store/store";
 import {
   Select,
@@ -18,11 +19,11 @@ export const IssueReporter = ({
 }) => {
   const [selectedReporter, setSelectedReporter] = useState(issueReporter);
   const users = useBoundStore((state) => state.users);
-  const updateIssue = useBoundStore((state) => state.updateIssue);
+  const { mutate } = useUpdateIssue();
 
   const handleChange = (value: string) => {
     setSelectedReporter(value);
-    updateIssue(id, { reporterId: value });
+    mutate({ data: { reporterId: value }, issueId: id });
   };
 
   return (

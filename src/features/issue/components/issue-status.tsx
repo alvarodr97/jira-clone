@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useBoundStore from "@/store/store";
+import { useUpdateIssue } from "../api/update-issue";
 import {
   Select,
   SelectContent,
@@ -21,13 +21,19 @@ const getBackgroundColorClass = (status: string) => {
   }
 };
 
-export const IssueStatus = ({ issueStatus, id }: { issueStatus: string, id: string }) => {
+export const IssueStatus = ({
+  issueStatus,
+  id,
+}: {
+  issueStatus: string;
+  id: string;
+}) => {
   const [selectedStatus, setSelectedStatus] = useState(issueStatus);
-  const updateIssue = useBoundStore((state) => state.updateIssue);
+  const { mutate } = useUpdateIssue();
 
   const handleChange = (value: IssueStatusEnum) => {
     setSelectedStatus(value);
-    updateIssue(id, { status: value })
+    mutate({ data: { status: value }, issueId: id });
   };
 
   return (

@@ -1,4 +1,5 @@
 import { LoaderFunctionArgs, useParams } from "react-router-dom";
+import { QueryClient } from "@tanstack/react-query";
 import useBoundStore from "@/store/store";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,6 @@ import { IssuePriority } from "@/features/issue/components/issue-priority";
 import { IssueDelete } from "@/features/issue/components/issue-delete";
 import { printDate } from "@/utils/helpers";
 import { getIssueQueryOptions, useIssue } from "@/features/issue/api/get-issue";
-import { QueryClient } from "@tanstack/react-query";
 
 export const issueLoader =
   (queryClient: QueryClient) =>
@@ -84,7 +84,6 @@ export const IssueRoute = () => {
         <div className="col-span-1 flex flex-col">
           <IssueStatus id={id} issueStatus={status} />
           <IssueReporter id={id} issueReporter={reporterId} />
-          <div>Assignees: Asignados</div>
           <IssuePriority id={id} issuePriority={priority} />
           <div className="mt-3 pt-3 leading-loose border-t border-borderLightest text-textMedium text-13">
             <div>Created: {printDate(createdAt)}</div>

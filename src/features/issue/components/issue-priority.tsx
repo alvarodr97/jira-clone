@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useUpdateIssue } from "../api/update-issue";
 import {
   Select,
   SelectContent,
@@ -7,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import useBoundStore from "@/store/store";
 import { IssuePriorityEnum } from "@/types/issue";
 import { IconSVG } from "../../../components/icon-svg";
 import { ISSUES_PRIORITY } from "@/constants/issues-constants";
@@ -20,11 +20,11 @@ export const IssuePriority = ({
   id: string;
 }) => {
   const [selectedPriority, setSelectedPriority] = useState(issuePriority);
-  const updateIssue = useBoundStore((state) => state.updateIssue);
+  const { mutate } = useUpdateIssue();
 
   const handleChange = (value: IssuePriorityEnum) => {
     setSelectedPriority(value);
-    updateIssue(id, { priority: value });
+    mutate({ data: { priority: value }, issueId: id });
   };
 
   return (

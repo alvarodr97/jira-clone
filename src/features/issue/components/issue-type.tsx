@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useBoundStore from "@/store/store";
+import { useUpdateIssue } from "../api/update-issue";
 import {
   Select,
   SelectContent,
@@ -19,11 +19,11 @@ export const IssueType = ({
   id: string;
 }) => {
   const [selectedType, setSelectedType] = useState<IssueTypeEnum>(issueType);
-  const updateIssue = useBoundStore((state) => state.updateIssue);
+  const { mutate } = useUpdateIssue();
 
   const handleChange = (value: IssueTypeEnum) => {
     setSelectedType(value);
-    updateIssue(id, { type: value });
+    mutate({ data: { type: value }, issueId: id });
   };
 
   return (
